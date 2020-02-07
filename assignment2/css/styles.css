@@ -6,6 +6,7 @@
 }
 
 body {
+    font-family: sans-serif, "Times New Roman", Times ;
     font-size: 16px;
     margin-left: 10px;  /* because the boxes each have 10px on both sides */
     margin-right: 10px;
@@ -19,30 +20,71 @@ header h1 {
     font-size: 16px;
     font-size: 1.75em;
     margin-top: 15px;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
 }
 
 
 /* Text Boxes */
+
 .text-box {
-  border: 1px solid green;
+  border: 1px solid black;
   margin-left: 10px;
   margin-right: 10px;
-}
-
-div div { 
   margin-top: 20px;
-}
-
-div div p {
-  padding: 15px;
   position: relative;
+  background-color: lightgray;
 }
 
+.description {
+  padding: 15px;
+  margin-top: 30px;
+}
 
+.title1 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1.25 em;
+  font-weight: 600;
+  border-left: 1px solid black;   /* removes the extra little line on top and right */
+  border-bottom: 1px solid black;
+  background-color: lightsalmon;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  width: 130px;
+  text-align: center;
+}
 
+.title2 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1.25 em;
+  font-weight: 600;
+  border-left: 1px solid black;   /* removes the extra little line on top and right */
+  border-bottom: 1px solid black;
+  background-color: red;
+  color: whitesmoke;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  width: 130px;
+  text-align: center;
+}
 
-
+.title3 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1.25 em;
+  font-weight: 600;
+  border-left: 1px solid black;   /* removes the extra little line on top and right */
+  border-bottom: 1px solid black;
+  background-color: yellow;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  width: 130px;
+  text-align: center;
+}
 
 
 /* Simple Responsive Framework. */

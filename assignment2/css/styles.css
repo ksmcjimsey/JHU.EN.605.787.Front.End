@@ -10,6 +10,7 @@ body {
     font-size: 16px;
     margin-left: 10px;  /* because the boxes each have 10px on both sides */
     margin-right: 10px;
+    font-size: 16px;
 }
 
 
@@ -17,10 +18,21 @@ body {
 header h1 {
     /* background-color: green; */
     text-align: center;
-    font-size: 16px;
     font-size: 1.75em;
     margin-top: 15px;
     margin-bottom: 15px;
+    display: none;
+}
+
+header h2 {
+  /* background-color: green; */
+  text-align: left;
+  font-size: 1.50em;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 10px;  /* Line up with the text boxes */
+  display: block;
+  font-family: “arial black”;
 }
 
 
@@ -28,18 +40,41 @@ header h1 {
 
 .text-box {
   border: 1px solid black;
+  padding-bottom: 12px;
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 20px;
   position: relative;
+  height: 120px;
+  /* overflow: hidden; */
   background-color: lightgray;
+  
 }
 
+/*
+.text-box:hover {
+  overflow-y: scroll;
+  cursor: s-resize;
+}
+*/
+
+/* Description for mobile */
 .description {
-  padding: 15px;
-  margin-top: 30px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  height: 62%;
+}
+.description:hover {
+  overflow-y: scroll;
+  cursor: s-resize;
+  margin-right: 2px;
+  padding-right: 15px;
 }
 
+/* title 1 - 3 is the mobile and title a -c are tablet and PC */
 .title1 {
   position: absolute;
   top: 0;
@@ -53,6 +88,7 @@ header h1 {
   padding-bottom: 7px;
   width: 130px;
   text-align: center;
+  display: none;
 }
 
 .title2 {
@@ -69,6 +105,7 @@ header h1 {
   padding-bottom: 7px;
   width: 130px;
   text-align: center;
+  display: none;
 }
 
 .title3 {
@@ -84,6 +121,38 @@ header h1 {
   padding-bottom: 7px;
   width: 130px;
   text-align: center;
+  display: none;
+}
+
+.titlea {
+  font-size: 1.25 em;
+  font-weight: 600;
+  border-bottom: 1px solid black;   /* removes the extra little line on top and right */
+  background-color: lightsalmon;
+  padding: 5px;
+  width: 100%;
+  text-align: center;
+}
+
+.titleb {
+  font-size: 1.25 em;
+  font-weight: 600;
+  border-bottom: 1px solid black;   /* removes the extra little line on top and right */
+  background-color: red;
+  color: whitesmoke;
+  padding: 5px;
+  width: 100%;
+  text-align: center;
+}
+
+.titlec {
+  font-size: 1.25 em;
+  font-weight: 600;
+  border-bottom: 1px solid black;   /* removes the extra little line on top and right */
+  background-color: yellow;
+  padding: 5px;
+  width: 100%;
+  text-align: center;
 }
 
 
@@ -92,8 +161,36 @@ header h1 {
     width: 100%;
   }
   
+  /* mobil when the top label wraps */
+  @media (max-width: 510px) {
+
+    .description {
+      height: 46%;
+    }
+    
+  }
+
   /********** Large devices only **********/
   @media (min-width: 992px) {
+
+    /* Additional class requirements */
+    header h1, .title1, .title2, .title3 {
+      display: block;
+    }
+
+    header h2, .titlea, .titleb, .titlec {
+      display: none;
+    }
+
+    .description {
+      padding-top: 0px;
+      margin-top: 44px;
+      overflow: hidden;
+      height: 62px;
+    }
+
+
+    /* Allowing a row to be broken into columns. */
     .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
       float: left;
     }
@@ -137,6 +234,24 @@ header h1 {
   
   /********** Tablet devices only **********/
   @media (min-width: 768px) and (max-width: 991px) {
+
+    /* Additional class requirements */
+    header h1, .title1, .title2, .title3  {
+      display: block;
+    }
+
+    header h2, .titlea, .titleb, .titlec {
+      display: none;
+    }
+
+    .description {
+      padding-top: 0px;
+      margin-top: 44px;
+      overflow: hidden;
+      height: 62px;
+    }
+
+    /* Allowing a row to be broken into columns. */
     .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
       float: left;
     }
@@ -176,4 +291,5 @@ header h1 {
     .col-md-12 {
       width: 100%;
     }
+    
 }

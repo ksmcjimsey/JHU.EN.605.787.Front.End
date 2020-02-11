@@ -10,5 +10,10 @@ body {
 #header-nav {
     border-radius: 0;   /* Take of corners */
     border: 0;
-    background-color: lightcyan;
+    /* background-color: #6d7174; */
 }
+
+#menu_item:hover {
+    background-color: silver;
+}
+

@@ -18,9 +18,9 @@
 
     <body>
 
-        <header class="container">
+        <header class="container-fluid">
 
-            <nav id="header-nav" class = "navbar navbar-expand-sm navbar-light bg-faded">
+            <nav id="header-nav" class = "navbar navbar-expand-sm navbar-dark bg-dark">
 
                 <a class="navbar-brand" href="#">
                     <h1>Food, LLC</h1>
@@ -32,15 +32,18 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="collapsingNavbar">
-                    <div class="navbar-nav">
-                        <a class="p-3 nav-item nav-link active " href="#">Chicken</a>
-                        <a class="p-3 nav-item nav-link " href="#">Beef</a>
-                        <a class="p-3 nav-item nav-link " href="#">Sushi Me</a>
+                    <div class="navbar-nav" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"
+                         id = "menu">
+                        <a id="menu_item" class="p-3 nav-item nav-link d-sm-none text-center" href="#">Chicken</a>
+                        <a id="menu_item" class="p-3 nav-item nav-link d-sm-none text-center" href="#">Beef</a>
+                        <a id="menu_item" class="p-3 nav-item nav-link d-sm-none text-center" href="#">Sushi Me</a>
                     </div>
                 </div>
                 
             </nav>
             
+            <h2 class="text-center mt-3">Our Menu</h2>
+
         </header>
 
         

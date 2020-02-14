@@ -17,7 +17,11 @@ body {
 }
 
 #menu_item:hover {
-    background-color: silver;
+    background-color: rgb(90, 73, 73);
+}
+
+#collapsingNavbar {
+    background-color: rgb(55, 54, 63);
 }
 
 section div div div { 

@@ -68,6 +68,23 @@ WARNING!!! WARNING!!!
       } else {
         helloSpeaker.speak(names[count]);
       }
-    }
+
+    }   // End of for loop
+
+    // array prototype map
+    greetingMap = names.map(n => returnMessage(n));
+    console.log (greetingMap);
 
   })();   // IIFE wrap - Step 1
+
+
+  // 2b. Named function to pass to map prototype function
+  function returnMessage (name) {
+    console.log(name);
+    var firstLetter = name.toLowerCase().charAt(0);
+    if ("j" === firstLetter) {
+      return byeSpeaker.speakSimple(name);
+    } else {
+      return helloSpeaker.speakSimple(name);
+    }
+  }

@@ -71,16 +71,56 @@ WARNING!!! WARNING!!!
 
     }   // End of for loop
 
+    console.log("****************************************");  // Add a break between outputs
+
+
     // array prototype map
-    greetingMap = names.map(n => returnMessage(n));
-    console.log (greetingMap);
+    greetingMap = names.map(n => returnAndPrintMessage(n));
+    //console.log (greetingMap);
+
+    console.log("****************************************");  // Add a break between outputs
+
+
+    // Reducer section
+    
+    hello = bye = [];
+    // console.log (hello, bye);
+
+    names.reduce(function(aC, cV,cI, aR) {
+
+      console.log(aC, cV, cI, aR);
+
+      
+      var firstLetter = cV.toLowerCase().charAt(0);
+      if ("j" === firstLetter) {
+        bye.push(returnMessage(cV));
+      } else {
+        hello.push(returnMessage(cV));
+      }
+      console.log (bye, hello);
+      
+    }, {hello: [], bye: []} );
+
+
 
   })();   // IIFE wrap - Step 1
 
 
   // 2b. Named function to pass to map prototype function
+  function returnAndPrintMessage (name) {
+    //console.log(name);
+    var firstLetter = name.toLowerCase().charAt(0);
+    if ("j" === firstLetter) {
+      console.log(byeSpeaker.speakSimple(name));
+      return byeSpeaker.speakSimple(name);
+    } else {
+      console.log(helloSpeaker.speakSimple(name));
+      return helloSpeaker.speakSimple(name);
+    }
+  }
+
   function returnMessage (name) {
-    console.log(name);
+    //console.log(name);
     var firstLetter = name.toLowerCase().charAt(0);
     if ("j" === firstLetter) {
       return byeSpeaker.speakSimple(name);

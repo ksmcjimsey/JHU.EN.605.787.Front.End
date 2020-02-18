@@ -83,7 +83,8 @@ WARNING!!! WARNING!!!
 
     // Reducer section
     
-    hello = bye = [];
+    hello = [];
+    bye = [];   // Had to have arrays here to get reducer to work.
     // console.log (hello, bye);
 
     names.reduce(function(aC, cV,cI, aR) {
@@ -100,6 +101,8 @@ WARNING!!! WARNING!!!
       console.log (bye, hello);
       
     }, {hello: [], bye: []} );
+
+    console.log ("Here", hello);
 
 
 

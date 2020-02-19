@@ -89,20 +89,27 @@ WARNING!!! WARNING!!!
 
     names.reduce(function(aC, cV,cI, aR) {
 
-      console.log(aC, cV, cI, aR);
-
-      
+      //console.log(aC, cV, cI, aR);
       var firstLetter = cV.toLowerCase().charAt(0);
       if ("j" === firstLetter) {
         bye.push(returnMessage(cV));
       } else {
         hello.push(returnMessage(cV));
       }
-      console.log (bye, hello);
+      //console.log (bye, hello);
       
     }, {hello: [], bye: []} );
 
-    console.log ("Here", hello);
+    //console.log ("Hello: ", hello);
+    //console.log("Goodbye: ", bye);
+    hello.forEach(function(element) {
+      console.log(element);
+    });
+    bye.forEach(function(element) {
+      console.log(element);
+    });
+
+
 
 
 

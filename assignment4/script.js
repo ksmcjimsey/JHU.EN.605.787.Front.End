@@ -81,12 +81,13 @@ WARNING!!! WARNING!!!
     console.log("****************************************");  // Add a break between outputs
 
 
-    // Reducer section
+    // Part 3. Reducer section
     
     hello = [];
     bye = [];   // Had to have arrays here to get reducer to work.
     // console.log (hello, bye);
 
+    // Part 3b. reduce
     names.reduce(function(aC, cV,cI, aR) {
 
       //console.log(aC, cV, cI, aR);
@@ -100,6 +101,7 @@ WARNING!!! WARNING!!!
       
     }, {hello: [], bye: []} );
 
+    // Part 3b. Loop over new arrays
     //console.log ("Hello: ", hello);
     //console.log("Goodbye: ", bye);
     hello.forEach(function(element) {
@@ -108,10 +110,6 @@ WARNING!!! WARNING!!!
     bye.forEach(function(element) {
       console.log(element);
     });
-
-
-
-
 
   })();   // IIFE wrap - Step 1
 
@@ -129,6 +127,7 @@ WARNING!!! WARNING!!!
     }
   }
 
+  // 3a. speakSimple used in the function called by Array.prototype.reduce
   function returnMessage (name) {
     //console.log(name);
     var firstLetter = name.toLowerCase().charAt(0);

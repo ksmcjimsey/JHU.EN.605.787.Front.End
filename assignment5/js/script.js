@@ -204,25 +204,22 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
         // 1. Call the waiting icon
         showLoading("#main-content");
 
-        // 2. Generate random rating
-        var randomRating = Math.floor(Math.random() * 6);   // Rating zero to five
-
-        // 3. call the build and load for About page
-        buildAndShowAboutHtml(randomRating);
+        // 2. call the build and load for About page
+        buildAndShowAboutHtml();
         
     }
 
-    function buildAndShowAboutHtml(rating) {
+    function buildAndShowAboutHtml() {
 
-        console.log("In buildAndShowAboutHtml function with a ratting of: " + rating + " stars");
+        console.log("In buildAndShowAboutHtml function");
 
         // 1. Get the html
         $ajaxUtils.sendGetRequest(
           aboutHtmlUrl,
           function (homeHtml) {     // This function is called once the html is returned from the ajax call.
 
-              // 2. Replace image with correct start rating image
-              
+              // 2. Replace image with correct start rating images
+              homeHtmlWithStars = randomStar(homeHtml);
 
               // 3. Add text after image
 
@@ -234,12 +231,29 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
               //console.log(homeHtmlToInsertIntoMainPage)
 
               // Insert about page in place of main content html
-              insertHtml("#main-content", homeHtml);
+              insertHtml("#main-content", homeHtml);  //***** change with modified html with starts attached. */
 
           },
           false); // False here because we are getting just regular HTML from the server, so no need to process JSON.  
 
       }   // End of buildAndShowAboutHtml
+
+      function randomStar(htmlToModify) {
+
+          // 1. Generate random rating
+          var randomRating = Math.floor(Math.random() * 5) + 1;   // Rating one to five
+
+          // 2. Loop through and replace with starts 
+
+
+          // 3. Loop through and replace with empty starts
+
+          // 4. Add text after starts
+
+          // 5. return the modified HTML back to build and display
+
+
+      }
 
 
       // Builds HTML for the categories page based on the data

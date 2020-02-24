@@ -1,34 +1,37 @@
+// adds event listeners
 $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 
     console.log ("In event loader code");
 
-        // Same as document.querySelector("#navbarToggle").addEventListener("blur",...
-        $("#navbarToggle").blur(function (event) {
-            console.log("In function global loader code");
-            var screenWidth = window.innerWidth;
-            if (screenWidth < 768) {
-                $("#collapsable-nav").collapse('hide');
-            }
-        });
+    // Same as document.querySelector("#navbarToggle").addEventListener("blur",...
+    $("#navbarToggle").blur(function (event) {
+          console.log("In function global loader code");
+          var screenWidth = window.innerWidth;
+          if (screenWidth < 768) {
+              $("#collapsable-nav").collapse('hide');
+          }
     });
+});   // End of add event listener after loading.
 
 
-    (function (global) {
+// Loaded in its own "namespace".  dc object is returned back to the window.
+(function (global) {
 
-      console.log("In function global loader code");
+    console.log("In function global loader code");
 
-      var dc = {};
+    var dc = {};
 
-      // Settings for snippets of html and for JSON loaded from the server.
-      var homeHtmlUrl = "snippets/home-snippet.html";
-      var allCategoriesUrl =
-        "https://davids-restaurant.herokuapp.com/categories.json";
-      var categoriesTitleHtml = "snippets/categories-title-snippet.html";
-      var categoryHtml = "snippets/category-snippet.html";
-      var menuItemsUrl =
-        "https://davids-restaurant.herokuapp.com/menu_items.json?category=";
-      var menuItemsTitleHtml = "snippets/menu-items-title.html";
-      var menuItemHtml = "snippets/menu-item.html";
+    // Settings for snippets of html and for JSON loaded from the server.
+    var homeHtmlUrl = "snippets/home-snippet.html";
+    var allCategoriesUrl =
+      "https://davids-restaurant.herokuapp.com/categories.json";
+    var categoriesTitleHtml = "snippets/categories-title-snippet.html";
+    var categoryHtml = "snippets/category-snippet.html";
+    var menuItemsUrl =
+      "https://davids-restaurant.herokuapp.com/menu_items.json?category=";
+    var menuItemsTitleHtml = "snippets/menu-items-title.html";
+    var menuItemHtml = "snippets/menu-item.html";
+    var aboutHtmlUrl = "snippets/about-snippet.html";
 
 
     // Convenience function for inserting innerHTML for 'select'
@@ -184,7 +187,6 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
         buildAndShowCategoriesHTML);
     };
 
-
     // Load the menu items view
     // 'categoryShort' is a short_name for a category
     dc.loadMenuItems = function (categoryShort) {
@@ -195,65 +197,108 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
         buildAndShowMenuItemsHTML);
     };
 
+    // Load the about page
+    dc.loadAboutPage = function () {
+        console.log("In dc.loadAboutPage function");
+    
+        // 1. Call the waiting icon
+        showLoading("#main-content");
 
-    // Builds HTML for the categories page based on the data
-    // from the server
-    function buildAndShowCategoriesHTML (categories) {
-      console.log("In buildAndShowCategoriesHTML function");
+        // 2. Generate random rating
+        var randomRating = Math.floor(Math.random() * 6);   // Rating zero to five
 
-      // Load title snippet of categories page
-      $ajaxUtils.sendGetRequest(
-        categoriesTitleHtml,
-        function (categoriesTitleHtml) {
-          // Retrieve single category snippet
-          $ajaxUtils.sendGetRequest(
-            categoryHtml,
-            function (categoryHtml) {
-              // Switch CSS class active to menu button
-              switchMenuToActive();
-
-              var categoriesViewHtml =
-                buildCategoriesViewHtml(categories,
-                                        categoriesTitleHtml,
-                                        categoryHtml);
-              insertHtml("#main-content", categoriesViewHtml);
-            },
-            false);
-        },
-        false);
+        // 3. call the build and load for About page
+        buildAndShowAboutHtml(randomRating);
+        
     }
 
+    function buildAndShowAboutHtml(rating) {
 
-    // Using categories data and snippets html
-    // build categories view HTML to be inserted into page
-    function buildCategoriesViewHtml(categories,
-                                    categoriesTitleHtml,
-                                    categoryHtml) {
+        console.log("In buildAndShowAboutHtml function with a ratting of: " + rating + " stars");
 
-      console.log("In buildCategoriesViewHtml function");
+        // 1. Get the html
+        $ajaxUtils.sendGetRequest(
+          aboutHtmlUrl,
+          function (homeHtml) {     // This function is called once the html is returned from the ajax call.
 
-      var finalHtml = categoriesTitleHtml;
-      finalHtml += "<section class='row'>";
+              // 2. Replace image with correct start rating image
+              
 
-      // Loop over categories
-      for (var i = 0; i < categories.length; i++) {
-        // Insert category values
-        var html = categoryHtml;
-        var name = "" + categories[i].name;
-        var short_name = categories[i].short_name;
-        html =
-          insertProperty(html, "name", name);
-        html =
-          insertProperty(html,
-                        "short_name",
-                        short_name);
-        finalHtml += html;
+              // 3. Add text after image
+
+
+              //var chosenCategoryShortName = chooseRandomCategory(categories)
+              //console.log ("Random short name chosen" + JSON.stringify(chosenCategoryShortName) );
+
+              //var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", "'" + chosenCategoryShortName.short_name + "'");
+              //console.log(homeHtmlToInsertIntoMainPage)
+
+              // Insert about page in place of main content html
+              insertHtml("#main-content", homeHtml);
+
+          },
+          false); // False here because we are getting just regular HTML from the server, so no need to process JSON.  
+
+      }   // End of buildAndShowAboutHtml
+
+
+      // Builds HTML for the categories page based on the data
+      // from the server
+      function buildAndShowCategoriesHTML (categories) {
+        console.log("In buildAndShowCategoriesHTML function");
+
+        // Load title snippet of categories page
+        $ajaxUtils.sendGetRequest(
+          categoriesTitleHtml,
+          function (categoriesTitleHtml) {
+            // Retrieve single category snippet
+            $ajaxUtils.sendGetRequest(
+              categoryHtml,
+              function (categoryHtml) {
+                // Switch CSS class active to menu button
+                switchMenuToActive();
+
+                var categoriesViewHtml =
+                  buildCategoriesViewHtml(categories,
+                                          categoriesTitleHtml,
+                                          categoryHtml);
+                insertHtml("#main-content", categoriesViewHtml);
+              },
+              false);
+          },
+          false);
       }
 
-      finalHtml += "</section>";
-      return finalHtml;
-    }
 
+      // Using categories data and snippets html
+      // build categories view HTML to be inserted into page
+      function buildCategoriesViewHtml(categories,
+                                      categoriesTitleHtml,
+                                      categoryHtml) {
+
+        console.log("In buildCategoriesViewHtml function");
+
+        var finalHtml = categoriesTitleHtml;
+        finalHtml += "<section class='row'>";
+
+        // Loop over categories
+        for (var i = 0; i < categories.length; i++) {
+          // Insert category values
+          var html = categoryHtml;
+          var name = "" + categories[i].name;
+          var short_name = categories[i].short_name;
+          html =
+            insertProperty(html, "name", name);
+          html =
+            insertProperty(html,
+                          "short_name",
+                          short_name);
+          finalHtml += html;
+        }
+
+        finalHtml += "</section>";
+        return finalHtml;
+      }
 
 
     // Builds HTML for the single category page based on the data

@@ -52,7 +52,7 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
     // Return substitute of '{{propName}}' with propValue in given 'string'
     var insertProperty = function (string, propName, propValue) {
         console.log ("In function insertProperty");
-        //console.log ("string: " + string + "  propName: " + propName + "  propValue: " + propValue);
+        console.log ("propName: " + propName + "  propValue: " + propValue);
         var propToReplace = "{{" + propName + "}}";
         string = string
           .replace(new RegExp(propToReplace, "g"), propValue);
@@ -153,7 +153,7 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
           //var shortN = "'" + chosenCategoryShortName.short_name + "'";
           //console.log(shortN);
           var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", "'" + chosenCategoryShortName.short_name + "'");
-          console.log(homeHtmlToInsertIntoMainPage)
+          //console.log(homeHtmlToInsertIntoMainPage)
 
           // TODO: STEP 4: Insert the the produced HTML in STEP 3 into the main page
           // Use the existing insertHtml function for that purpose. Look through this code for an example
@@ -218,20 +218,11 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
           aboutHtmlUrl,
           function (homeHtml) {     // This function is called once the html is returned from the ajax call.
 
-              // 2. Replace image with correct start rating images
+              // 1. Replace image with correct start rating images
               homeHtmlWithStars = randomStar(homeHtml);
 
-              // 3. Add text after image
-
-
-              //var chosenCategoryShortName = chooseRandomCategory(categories)
-              //console.log ("Random short name chosen" + JSON.stringify(chosenCategoryShortName) );
-
-              //var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", "'" + chosenCategoryShortName.short_name + "'");
-              //console.log(homeHtmlToInsertIntoMainPage)
-
-              // Insert about page in place of main content html
-              insertHtml("#main-content", homeHtml);  //***** change with modified html with starts attached. */
+              // 2. Insert about page in place of main content html
+              insertHtml("#main-content", homeHtmlWithStars);  //***** change with modified html with starts attached. */
 
           },
           false); // False here because we are getting just regular HTML from the server, so no need to process JSON.  
@@ -239,21 +230,31 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
       }   // End of buildAndShowAboutHtml
 
       function randomStar(htmlToModify) {
+          console.log("In randomStar function");
 
           // 1. Generate random rating
           var randomRating = Math.floor(Math.random() * 5) + 1;   // Rating one to five
+          var randomRatingCounter = randomRating;
+          console.log("Random number is: " + randomRating);
 
-          // 2. Loop through and replace with starts 
-
-
-          // 3. Loop through and replace with empty starts
+          // 2. Loop through and replace with starts
+          for (var x = 0; x < 5; x++) {
+              if (randomRatingCounter > 0) {
+                  htmlToModify = insertProperty(htmlToModify, "star-" + x, "fa fa-star" );
+                  randomRatingCounter--;
+              } else {
+                  htmlToModify = insertProperty(htmlToModify, "star-" + x, "fa fa-star-o");
+              }
+          }
 
           // 4. Add text after starts
+          var starText = randomRating + "-star rating";
+          htmlToModify = insertProperty(htmlToModify, "star-text", starText);
 
           // 5. return the modified HTML back to build and display
-
-
-      }
+          //console.log(htmlToModify);
+          return htmlToModify;
+      }   // End of randomStar
 
 
       // Builds HTML for the categories page based on the data

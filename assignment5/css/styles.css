@@ -229,6 +229,12 @@ h3.menu-item-title {
 }
 /* END SINGLE CATEGORY PAGE */
 
+/* ABOUT SNIPPET */
+.bs-wont-space {
+  padding-left: 10px !important;
+}
+/* END OF ABOUT SNIPPET */
+
 
 /********** Large devices only **********/
 @media (min-width: 1200px) {

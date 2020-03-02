@@ -5,10 +5,10 @@
     angular.module('LunchApp', [])
 
     // Controller for text and button
-    .controller('LunchController', LunchController);
+    .controller('LunchCheckController', LunchCheckController);
 
-    LunchController.$inject = ['$scope'];
-    function LunchController($scope) {
+    LunchCheckController.$inject = ['$scope'];
+    function LunchCheckController($scope) {
 
         $scope.lunchList = "";
         $scope.message = "";

@@ -22,13 +22,21 @@
             console.log(lunchFoodArray.length);
 
             // Loop through and weed out empty items
-
+            var cleanLunchArray = [];
+            for (var c =0; c < lunchFoodArray.length; c++){
+                if (lunchFoodArray[c].trim()) {
+                    console.log("add it");
+                    cleanLunchArray.push(lunchFoodArray[c]);
+                }
+            }
+            console.log(cleanLunchArray);
+            console.log(cleanLunchArray.length);
 
             // Set the message based on array length
-            if ( (1 >= lunchFoodArray.length) && (lunchFoodArray[0] == "") ) {
+            if ( 0 >= cleanLunchArray.length ) {
                 $scope.message = "Please enter data first";
                 $scope.type = "text-warning";
-            } else if (4 > lunchFoodArray.length) {
+            } else if (4 > cleanLunchArray.length) {
                 $scope.message = "Enjoy!";
                 $scope.type = "text-success";
             } else {

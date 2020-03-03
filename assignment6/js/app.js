@@ -35,13 +35,16 @@
             // Set the message based on array length
             if ( 0 >= cleanLunchArray.length ) {
                 $scope.message = "Please enter data first";
-                $scope.type = "text-warning";
+                //$scope.type = "text-danger";
+                $scope.type = "red-color";
             } else if (4 > cleanLunchArray.length) {
                 $scope.message = "Enjoy!";
-                $scope.type = "text-success";
+                //$scope.type = "text-success";
+                $scope.type = "green-color";
             } else {
                 $scope.message = "To Much!";
-                $scope.type = "text-danger";
+                //$scope.type = "text-success";
+                $scope.type = "green-color";
             }
 
         }

@@ -5,61 +5,67 @@
     angular.module('ShoppingListApp', [])
 
     // Controller for text and button
-    .controller('ToBuyController', ToBuyController);
+    .controller('ToBuyController', ToBuyController)
+    .controller('AlreadyBoughtController', AlreadyBoughtController)
+    .service('ShoppingListCheckOffService', ShoppingListCheckOffService);
 
-    ToBuyController.$inject = ['$scope'];
-    function ToBuyController($scope) {
+
+    // Controller for the to buy list.
+    ToBuyController.$inject = ['ShoppingListCheckOffService'];
+    function ToBuyController(ShoppingListCheckOffService) {
+
+        // Instead of exposing values through $scope we use the "this"
+        // of the controller.
+        var toBuy = this;
+
+        // This bound items on html gets the updated list from the service.
+        toBuy.items = ShoppingListCheckOffService.getToBuyList();
+        console.log(toBuy.items)
+
+
+    }
+
+
+    // Controller for Already Bought list.
+    AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
+    function AlreadyBoughtController(ShoppingListCheckOffService) {
+
+        // Instead of exposing values through $scope we use the "this"
+        // of the controller.
+        var alreadyBought = this;
+
+    }
+
+
+    // Service shopping list service - singleton (only one copy in the app)
+    function ShoppingListCheckOffService() {
+        // Rename this to service.  Attach items to this to expose to 
+        // outside the function.
+        var service = this;
 
         // Variables
-        $scope.groceryListArray = [
+        var toBuyListArray = [
             { name : "cookies", quantity: 10 },
             { name : "steak", quantity: 10 },
             { name : "bag of potatoes", quantity: 1 },
             { name : "corn on cob", quantity: 10 },
             { name : "sour cream tub", quantity: 1 }
-        ]
+        ];
 
+        var boughtListArray = [];
 
-        // $scope.lunchList = "";
-        // $scope.message = "";
-        // $scope.type = "text-success";
-
-        // $scope.lunchCount = function () {
-
-        //     // User has clicked the "Check If Too Much button"
-        //     var lunchFoodArray = $scope.lunchList.trim().split(",");
-        //     console.log(lunchFoodArray);
-        //     console.log(lunchFoodArray.length);
-
-        //     // Loop through and weed out empty items
-        //     var cleanLunchArray = [];
-        //     for (var c =0; c < lunchFoodArray.length; c++){
-        //         if (lunchFoodArray[c].trim()) {
-        //             console.log("add it");
-        //             cleanLunchArray.push(lunchFoodArray[c]);
-        //         }
-        //     }
-        //     console.log(cleanLunchArray);
-        //     console.log(cleanLunchArray.length);
-
-        //     // Set the message based on array length
-        //     if ( 0 >= cleanLunchArray.length ) {
-        //         $scope.message = "Please enter data first";
-        //         //$scope.type = "text-danger";
-        //         $scope.type = "red-color";
-        //     } else if (4 > cleanLunchArray.length) {
-        //         $scope.message = "Enjoy!";
-        //         //$scope.type = "text-success";
-        //         $scope.type = "green-color";
-        //     } else {
-        //         $scope.message = "To Much!";
-        //         //$scope.type = "text-success";
-        //         $scope.type = "green-color";
-        //     }
-
-        // }
+        // Function to return To Buy list
+        service.getToBuyList = function () {
+            return toBuyListArray;
+        }
 
     }
 
 
 })();
+
+
+// Steps
+// 1. Set up data in service
+// 2. Set up method to manage data in service
+// 3. Controller 

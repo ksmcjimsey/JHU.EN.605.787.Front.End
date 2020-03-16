@@ -7,7 +7,8 @@
     // Controller for text and button
     .controller('ToBuyController', ToBuyController)
     .controller('AlreadyBoughtController', AlreadyBoughtController)
-    .service('ShoppingListCheckOffService', ShoppingListCheckOffService);
+    .service('ShoppingListCheckOffService', ShoppingListCheckOffService)
+//    .filter('totalCost', totalCost);
 
 
     // Controller 1 for the to buy list.
@@ -17,17 +18,17 @@
         // Instead of exposing values through $scope we use the "this"
         // of the controller.
         var toBuy = this;
+        //var totalPrice = 0.0;
 
         // This bound items on html gets the updated list from the service.
         toBuy.items = ShoppingListCheckOffService.getToBuyList();
-        //console.log(toBuy.items)
 
         toBuy.boughtItem = function (itemIdx) {
         
             // *****Need to call the service funtion to transfer the item
             // this means remove from one list and add to the other.
+            //toBuy.totalPrice = ShoppingListCheckOffService.calcTotal(itemIdx);
             ShoppingListCheckOffService.moveItemToBoughtList(itemIdx);
-
         }
 
 
@@ -41,8 +42,17 @@
         // Instead of exposing values through $scope we use the "this"
         // of the controller.
         var alreadyBought = this;
+        var totalPrice = 0.0;
 
         alreadyBought.items = ShoppingListCheckOffService.alreadyBoughtList();
+
+        alreadyBought.calcTotal = function (itemIdx) {
+            console.log ("Item Index: ", itemIdx)
+            var temp = ShoppingListCheckOffService.calculateTotal(itemIdx);
+            console.log ("Temp: ", temp)
+            return temp
+        }
+        
 
     }
 
@@ -82,11 +92,10 @@
 
             // If the index is in the array range then remove it
             if (itemIndex > -1 && itemIndex < toBuyListArray.length) {
-                console.log("made it ", itemIndex);
+                //console.log("made it ", itemIndex);
                 
                 // Add item to bought list
                 boughtListArray.push(toBuyListArray[itemIndex]);
-
 
                 // Remove item from buy list
                 toBuyListArray.splice(itemIndex, 1);
@@ -94,9 +103,14 @@
             }
         }
 
-        
+        service.calculateTotal = function (itemIndex) {
+            if (itemIndex > -1 && itemIndex < boughtListArray.length) {
+                return (boughtListArray[itemIndex].quantity 
+                       * boughtListArray[itemIndex].pricePerUnit).toFixed(2);
+            }
+        }
 
-    }
+    }   // end of ShoppingListCheckOffService
 
 
 })();

@@ -25,12 +25,14 @@
       <div class="col-md-6 bottom-margin" ng-controller="ToBuyController as toBuy">
         <h2>To Buy:</h2>
         <ul>
-          <li ng-repeat="item in toBuy.items">Buy {{item.quantity}} {{item.name}}
+          <li ng-repeat="item in toBuy.items">Buy 
+            <input class="quantiy-text-box" type="text" 
+                   ng-model="item.quantity"> {{item.name}}
             <button ng-click="toBuy.boughtItem($index);" 
                     class="btn btn-success">
                     <span class="{{item.status}}"></span> toBuy
                     <span class="glyphicon glyphicon-ok"></span>
-            </button></li>
+            </button>
           </li>
 
         </ul>
@@ -44,7 +46,10 @@
         <ul>
           <!-- <li>Bought 10 cookies</li> -->
           <li ng-repeat="item in alreadyBought.items">
-            Bought {{item.quantity}} {{item.name}} <span class="glyphicon glyphicon-ok"></span>
+            Bought {{item.quantity}} {{item.name}} for a total price 
+            of {{alreadyBought.calcTotal($index)}}
+            <span class="glyphicon glyphicon-ok"></span>
+            <span class="ml-2">
           </li>
         </ul>
 

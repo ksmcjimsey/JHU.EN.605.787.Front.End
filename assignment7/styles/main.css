@@ -20,3 +20,7 @@
   .bottom-margin {
     margin-bottom: 3em;
   }
+
+  .quantiy-text-box {
+    max-width: 40px;
+  }

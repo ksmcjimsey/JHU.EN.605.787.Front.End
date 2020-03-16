@@ -8,7 +8,7 @@
     .controller('ToBuyController', ToBuyController)
     .controller('AlreadyBoughtController', AlreadyBoughtController)
     .service('ShoppingListCheckOffService', ShoppingListCheckOffService)
-//    .filter('totalCost', totalCost);
+    .filter('symbol', SymbolFilter);
 
 
     // Controller 1 for the to buy list.
@@ -36,8 +36,9 @@
 
 
     // Controller 2 for Already Bought list.
-    AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
-    function AlreadyBoughtController(ShoppingListCheckOffService) {
+    // Could have applied the filter here as well
+    AlreadyBoughtController.$inject = ['ShoppingListCheckOffService', 'symbolFilter'];
+    function AlreadyBoughtController(ShoppingListCheckOffService, symbolFilter) {
 
         // Instead of exposing values through $scope we use the "this"
         // of the controller.
@@ -47,10 +48,10 @@
         alreadyBought.items = ShoppingListCheckOffService.alreadyBoughtList();
 
         alreadyBought.calcTotal = function (itemIdx) {
-            console.log ("Item Index: ", itemIdx)
-            var temp = ShoppingListCheckOffService.calculateTotal(itemIdx);
-            console.log ("Temp: ", temp)
-            return temp
+            //console.log ("Item Index: ", itemIdx)
+            //console.log (symbolFilter(30.69));
+            //return symbolFilter(ShoppingListCheckOffService.calculateTotal(itemIdx));
+            return ShoppingListCheckOffService.calculateTotal(itemIdx);
         }
         
 
@@ -103,6 +104,8 @@
             }
         }
 
+        // one way binding to the view
+        // could have called the filter here but called it in the view instead
         service.calculateTotal = function (itemIndex) {
             if (itemIndex > -1 && itemIndex < boughtListArray.length) {
                 return (boughtListArray[itemIndex].quantity 
@@ -111,6 +114,15 @@
         }
 
     }   // end of ShoppingListCheckOffService
+
+
+    // Filters
+    function SymbolFilter() {
+        return function (input) {
+            input = "$$$" + input;
+            return input;
+        };
+    }
 
 
 })();

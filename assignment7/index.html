@@ -46,8 +46,8 @@
         <ul>
           <!-- <li>Bought 10 cookies</li> -->
           <li ng-repeat="item in alreadyBought.items">
-            Bought {{item.quantity}} {{item.name}} for a total price 
-            of {{alreadyBought.calcTotal($index)}}
+            Bought {{item.quantity}} {{item.name}}  
+            for a total price of {{ alreadyBought.calcTotal($index) | symbol }}
             <span class="glyphicon glyphicon-ok"></span>
             <span class="ml-2">
           </li>

@@ -26,16 +26,20 @@
 				<div class="form-group">
 					<input type="text" placeholder="search term" class="form-control"
 						   ng-model="narrow.searchWord">
-
 				</div>
-					<div class="form-group narrow-button">
-					<!-- <button ng-click="narrow.returnList('beef')" -->
-					<button ng-click="narrow.returnList()"
+
+				<div class="form-group narrow-button">
+					<button ng-click="narrow.found()"
 							class="btn btn-primary">Narrow It Down For Me!</button>
 				</div>
 
-				<!-- found-items should be implemented as a component -->
-				<found-items found-items="...." on-remove="...."></found-items>
+				<br /><br />
+
+<!-- *** Put in code that we can remove with the directive -->
+<!-- *** Note, convert to Bootstrap table then convert to datatable *** -->
+				<div>
+					<found-list-directive my-list="narrow" title="{{narrow.title}}"></found-list-directive>
+				</div>
 
 			</div>	<!-- Angular controller -->
 

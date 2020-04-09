@@ -146,7 +146,7 @@
     }   // End of MenuSearchService
 
 
-    // *** Directives *** //
+    // *** DIRECTIVES *** //
     //
     // Found list directive
 // *** Video 26
@@ -158,11 +158,11 @@
             //template: "{{item.short_name}}"  Lecture 26
             templateUrl: "table.html",      // Lecture 27
             restrict: 'E',                  // Lecture 27
-            scope: {                        // Lecture 28 - Use other words then list for f's sake
+            scope: {                        // Lecture 28 - Use other words then 'list' for f's sake
                 narrow: '<myList',      // No idea why the name went away betwee video 28 and 29, WTF
                 title: '@title'
             },
-            // controller: FoundListDirectiveController,
+            // controller: FoundListDirectiveController,    // Video 29 breaks code can't use.
             // controllerAs: 'menuList',
             // bindToController: true
         };
@@ -170,6 +170,9 @@
         return ddo;
     }   // End of FoundListDirective
 
+    // This crap code doesn't work because I can not use the array any more once I go to
+    // this dumb ass Directive controller!!!!!
+    // Videos do not help me understand the linkages between all these parts!!!!!!!!
     function FoundListDirectiveController() {
         
         var fldc = this;
@@ -184,27 +187,5 @@
             return false;
         };
     }
-
-    // function FoundListDirective () {
-    //     var ddo = {
-    //         templateUrl: 'foundList.html',
-    //         scope: {
-    //             items: '<'
-    //         },
-    //         controller: FoundListDirectiveController,
-    //         controllerAs: 'list',
-    //         bindToController: true
-    //     };
-
-    //     return ddo;
-    // }   // End of FoundListDirective
-
-    // Directive controller
-    // function FoundListDirectiveController () {
-    //     var list = this;
-
-
-    // }   // End of FoundListDirective
-
 
 })();   // End of IIFE

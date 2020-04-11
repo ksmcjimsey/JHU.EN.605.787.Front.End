@@ -19,26 +19,31 @@
 
 		<div class="container">
 			
-			<div ng-controller="NarrowItDownController as narrow">
+			<div id="narCtrl" ng-controller="NarrowItDownController as narCtrl">
 
 				<h1>Narrow Down Your Chinese Menu Choice</h1>
 
 				<div class="form-group">
 					<input type="text" placeholder="search term" class="form-control"
-						   ng-model="narrow.searchWord">
+						   ng-model="narCtrl.searchWord">
 				</div>
 
 				<div class="form-group narrow-button">
-					<button ng-click="narrow.found()"
+					<button ng-click="narCtrl.found()"
 							class="btn btn-primary">Narrow It Down For Me!</button>
 				</div>
 
 				<br /><br />
 
-<!-- *** Put in code that we can remove with the directive -->
-<!-- *** Note, convert to Bootstrap table then convert to datatable *** -->
+				<!-- my-list references the controller name it is in in html.  So narrow is my 
+					  controllers name and list1 and list2 are video 28 example 
+					Step 3 video 30 part 1 is deleteItem property. 
+						   *** Remember to convert camel case to dash nameing *** -->
 				<div>
-					<found-list-directive my-list="narrow" title="{{narrow.title}}"></found-list-directive>
+					<found-list-directive my-list="narCtrl" 
+										  title="{{narCtrl.title}}"
+										  delete-item="narCtrl.removeItem(itemIndex)">
+					</found-list-directive>
 				</div>
 
 			</div>	<!-- Angular controller -->

@@ -26,8 +26,7 @@
         // Value in the search box
         narrow.searchWord = "";
         narrow.workingArray = [];
-        narrow.title = "Search Results (" 
-                        + narrow.workingArray.length + ")";
+        narrow.title = "";
 
         narrow.found = function() {
             
@@ -39,7 +38,7 @@
                 narrow.workingArray = response.data.menu_items;
                 console.log("narrow testArray", narrow.workingArray);
                 narrow.title = narrow.searchWord 
-                               + " ("+ narrow.workingArray.length + ")";
+                               + " ("+ narrow.workingArray.length + ") items found";
             })
             .catch(function (error) {
                 console.log(error);
@@ -49,7 +48,8 @@
         }   // End of narrow.found function
 
         // Remove an item from the promise data list based on the
-        // index of the array element.  Seems this would easier if 
+        // index of the array element.  Seems this would easier if
+        // Step 1: of slides for video 30 part 1
         narrow.removeItem = function(itemIndex) {
             // Call the service - try to contain the data in the service
             console.log("Item Index is: ", itemIndex);
@@ -159,12 +159,13 @@
             templateUrl: "table.html",      // Lecture 27
             restrict: 'E',                  // Lecture 27
             scope: {                        // Lecture 28 - Use other words then 'list' for f's sake
-                narrow: '<myList',      // No idea why the name went away betwee video 28 and 29, WTF
-                title: '@title'
+                narrowObj: '<myList',       // No idea why the name went away between video 28 and 29, WTF
+                title: '@',
+                remove: '&deleteItem'       // Step 2 video 30 part 1: remove used in child method and delete item is used in parent html template      
             },
-            // controller: FoundListDirectiveController,    // Video 29 breaks code can't use.
-            // controllerAs: 'menuList',
-            // bindToController: true
+            controller: FoundListDirectiveController,    // controller for the directive
+            controllerAs: 'dirCtrl',        // In our partial page we can refer to this controller with dirCtrl
+            bindToController: true          // the narrowObj and title show up on dirCtrl in scriptlet
         };
 
         return ddo;
@@ -177,15 +178,34 @@
         
         var fldc = this;
 
-        console.log("Title in Directory controller:")
-        fldc.elementsInList = function () {
-            console.log ("Inside Found List Directive Controller", fldc.narrow.workingArray.length);
-            if (fldc.narrow.workingArray.length === 0) {
+        // console.log("Title in Directory controller: ", fldc.title);
+        // console.log("Directory controller fldc.narrowObj: ", fldc.narrowObj);
+        // console.log("Directory controller fldc.narrowObj.workingArray: ", fldc.narrowObj.workingArray);
+        // console.log();
+
+
+        fldc.arrayIsEmpty = function () {
+            //console.log ("fldc.narrowObj.workingArray.length", 
+            //              fldc.narrowObj.workingArray.length);
+            
+            if (fldc.narrowObj.workingArray.length === 0) {
+                //console.log("Length of array is zero in directive's controller.");
                 return true;
             }
 
             return false;
         };
-    }
+
+        fldc.arrayIsNotEmpty = function () {
+            
+            if (fldc.narrowObj.workingArray.length !== 0) {
+                //console.log("Length of array is not zero in directive's controller.");
+                return true;
+            }
+
+            return false;
+        };
+
+    }   // End of FoundListDirectiveController
 
 })();   // End of IIFE

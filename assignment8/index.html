@@ -36,14 +36,14 @@
 				<br /><br />
 
 				<!-- my-list references the controller name it is in in html.  So narrow is my 
-					  controllers name and list1 and list2 are video 28 example 
-					Step 3 video 30 part 1 is deleteItem property. 
+					 controllers name and list1 and list2 are video 28 example 
+					 Step 3 video 30 part 1 is deleteItem property. 
 						   *** Remember to convert camel case to dash nameing *** -->
-				<div>
-					<found-list-directive my-list="narCtrl" 
+				<div id='directiveSection'>
+					<found-items-directive my-list="narCtrl" 
 										  title="{{narCtrl.title}}"
 										  delete-item="narCtrl.removeItem(itemIndex)">
-					</found-list-directive>
+					</found-items-directive>
 				</div>
 
 			</div>	<!-- Angular controller -->

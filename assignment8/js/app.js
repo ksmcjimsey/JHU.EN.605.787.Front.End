@@ -11,7 +11,7 @@
     .controller('NarrowItDownController', NarrowItDownController)
     .service('MenuSearchService', MenuSearchService)
     .constant('ApiForMenu', "https://davids-restaurant.herokuapp.com/menu_items.json")
-    .directive('foundListDirective', FoundListDirective);
+    .directive('foundItemsDirective', FoundItemsDirective);
 
 
     // *** CONTROLLERS *** //
@@ -30,13 +30,13 @@
 
         narrow.found = function() {
             
-            // This is a promise as well so maybe I need to use the .then
+            // This is a promise as well so I need to use the .then
             // so the timing is correct
             var promise = MenuSearchService.getMatchedMenuItems(narrow.searchWord);
             promise.then(function (response) {
                 //console.log("Response in controller: ", response);
                 narrow.workingArray = response.data.menu_items;
-                console.log("narrow testArray", narrow.workingArray);
+                //console.log("narrow testArray", narrow.workingArray);
                 narrow.title = narrow.searchWord 
                                + " ("+ narrow.workingArray.length + ") items found";
             })
@@ -52,7 +52,7 @@
         // Step 1: of slides for video 30 part 1
         narrow.removeItem = function(itemIndex) {
             // Call the service - try to contain the data in the service
-            console.log("Item Index is: ", itemIndex);
+            //console.log("Item Index is: ", itemIndex);
             MenuSearchService.removeItem(itemIndex);
             narrow.title = narrow.searchWord + " Results Left"
                            + " ("+ narrow.workingArray.length + ")";
@@ -138,9 +138,9 @@
 
         // Remove item service
         muService.removeItem = function (itemIdx) {
-            console.log ("Index is: ", itemIdx);
+            //console.log ("Index is: ", itemIdx);
             sc.splice(itemIdx, 1);
-            console.log("sc equals: ", sc);
+            //console.log("sc equals: ", sc);
         };
 
     }   // End of MenuSearchService
@@ -148,41 +148,34 @@
 
     // *** DIRECTIVES *** //
     //
-    // Found list directive
-// *** Video 26
+    // Found items directive
     // factory function that returns the ddo. Takes the 
     // template code and puts it where we call the directive
     // in the HTML file.  If it returns a ddo it is a factory function
-    function FoundListDirective () {
+    function FoundItemsDirective () {
         var ddo = {
             //template: "{{item.short_name}}"  Lecture 26
             templateUrl: "table.html",      // Lecture 27
             restrict: 'E',                  // Lecture 27
-            scope: {                        // Lecture 28 - Use other words then 'list' for f's sake
-                narrowObj: '<myList',       // No idea why the name went away between video 28 and 29, WTF
+            scope: {                        // Lecture 28
+                narrowObj: '<myList',       // No idea why the name went away between video 28 and 29.
                 title: '@',
-                remove: '&deleteItem'       // Step 2 video 30 part 1: remove used in child method and delete item is used in parent html template      
+                onRemove: '&deleteItem'     // Step 2 video 30 part 1: onRemove used in child method and delete item is used in parent html template      
             },
-            controller: FoundListDirectiveController,    // controller for the directive
+            controller: FoundItemsDirectiveController,    // controller for the directive
             controllerAs: 'dirCtrl',        // In our partial page we can refer to this controller with dirCtrl
             bindToController: true          // the narrowObj and title show up on dirCtrl in scriptlet
         };
 
         return ddo;
-    }   // End of FoundListDirective
+    }   // End of FoundItemsDirective
 
-    // This crap code doesn't work because I can not use the array any more once I go to
-    // this dumb ass Directive controller!!!!!
-    // Videos do not help me understand the linkages between all these parts!!!!!!!!
-    function FoundListDirectiveController() {
+    // Needed to add teh onRemove to pass index back to the parent to call the service.
+    // Tried to get factory to work but had an error.  I think I was misisng its definition
+    // at the top.  I'll try again on the next assginment if it uses a service.
+    function FoundItemsDirectiveController() {
         
         var fldc = this;
-
-        // console.log("Title in Directory controller: ", fldc.title);
-        // console.log("Directory controller fldc.narrowObj: ", fldc.narrowObj);
-        // console.log("Directory controller fldc.narrowObj.workingArray: ", fldc.narrowObj.workingArray);
-        // console.log();
-
 
         fldc.arrayIsEmpty = function () {
             //console.log ("fldc.narrowObj.workingArray.length", 
@@ -206,6 +199,7 @@
             return false;
         };
 
-    }   // End of FoundListDirectiveController
+    }   // End of FoundItemsDirectiveController
+
 
 })();   // End of IIFE

@@ -17,8 +17,8 @@
             <td>{{item.price_small}}</td>
             <td>
                 <!-- Step 4 of video 30 part 1-->
-                <button ng-click="dirCtrl.remove({itemIndex: $index});" 
-                        class="btn btn-sm btn-danger">Delete</button>
+                <button ng-click="dirCtrl.onRemove({itemIndex: $index});" 
+                        class="btn btn-sm btn-danger">Don't want this one!</button>
             </td>
         </tr>
     </tbody>
@@ -29,5 +29,5 @@
 </table>
 
 <div class="error" ng-if="dirCtrl.arrayIsEmpty()">
-    WARNING! WARNING! ARRAY IS EMPTY!
+    No return results
 </div>

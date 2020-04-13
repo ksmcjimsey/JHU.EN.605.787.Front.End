@@ -28,11 +28,20 @@
         narrow.workingArray = [];
         narrow.title = "";
 
+        // Called with the "Narrow It Down For Me!" button is clicked.
         narrow.found = function() {
             
+            // Try to set array to empty if searchWord is empty
+            var promise;
+            
+            if (narrow.searchWord.trim() === "") {
+                narrow.workingArray = [];
+                return promise;
+            }
+
             // This is a promise as well so I need to use the .then
             // so the timing is correct
-            var promise = MenuSearchService.getMatchedMenuItems(narrow.searchWord);
+            promise = MenuSearchService.getMatchedMenuItems(narrow.searchWord);
             promise.then(function (response) {
                 //console.log("Response in controller: ", response);
                 narrow.workingArray = response.data.menu_items;
@@ -66,7 +75,6 @@
     // Menu search service
     MenuSearchService.$inject = ['$http', "ApiForMenu"];
     function MenuSearchService($http, ApiForMenu) {
-
 
         // Rename this
         var muService = this;

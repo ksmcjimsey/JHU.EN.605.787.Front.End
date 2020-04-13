@@ -25,7 +25,7 @@
 
         // Value in the search box
         narrow.searchWord = "";
-        narrow.workingArray = [];
+        narrow.workingArray = ["inital"];
         narrow.title = "";
 
         // Called with the "Narrow It Down For Me!" button is clicked.
@@ -199,8 +199,9 @@
 
         fldc.arrayIsNotEmpty = function () {
             
-            if (fldc.narrowObj.workingArray.length !== 0) {
-                //console.log("Length of array is not zero in directive's controller.");
+            if ( (fldc.narrowObj.workingArray.length !== 0) 
+                 && (fldc.narrowObj.workingArray[0] !== 'inital') ) {
+                console.log("Length of array is not zero in directive's controller.");
                 return true;
             }
 

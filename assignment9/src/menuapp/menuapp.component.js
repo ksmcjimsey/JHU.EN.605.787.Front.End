@@ -10,7 +10,7 @@
 })();
 
 
-MenuAppComponentController.$inject = [$rootScope];
+MenuAppComponentController.$inject = ['$rootScope'];
 function MenuAppComponentController($rootScope) {
     var $ctrl = this;
 

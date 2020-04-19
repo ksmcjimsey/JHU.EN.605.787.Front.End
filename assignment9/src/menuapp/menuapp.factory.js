@@ -40,22 +40,22 @@
         // };
 
         
-        // mCSService.getMenuCategories = function () {
-        //     console.log("In mCSService.getMenuCategories");
-        //     var response = $http({
-        //     //$http({
-        //        method: "GET",
-        //        url: (ApiForCategories + "/categories.json")
-        //     }).then (function success(response) {
-        //         console.log(">> mCSService.getMenuCategories response",
-        //                      response.data);
-        //     })
-        //     .catch (function (error) {
-        //         console.log(error);
-        //     });
+        mCSService.getMenuCategories = function () {
+            console.log("In mCSService.getMenuCategories");
+            var response = $http({
+            //$http({
+               method: "GET",
+               url: (ApiForCategories + "/categories.json")
+            }).then (function success(response) {
+                console.log(">> mCSService.getMenuCategories response",
+                             response.data);
+            })
+            .catch (function (error) {
+                console.log(error);
+            });
         
-        //     return response;
-        // };
+            return response;
+        };
 
     }
 

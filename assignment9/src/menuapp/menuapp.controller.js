@@ -12,6 +12,8 @@ function MenuAppController($http, MenuAppFactory) {
     // Test factory/service
     var testService = MenuAppFactory();
 
+    mac.categoriesArray = [];
+
     // var promise = testService.getMenuCategories();
     // promise.then (function (response) {
     //     console.log(promise);
@@ -23,7 +25,7 @@ function MenuAppController($http, MenuAppFactory) {
 
     // Test function called by button
     mac.test = function () {
-        console.log("I HATE Angular!!!");
+        console.log(">> In MenuAppController:test");
 
         var bsAngular = testService.getMenuCategories();
         bsAngular.then(function (response) {
@@ -32,21 +34,20 @@ function MenuAppController($http, MenuAppFactory) {
         .catch(function (error) {
             console.log(error);
         })
-        
-        categoriesArray = [];
 
-        var testThisBS = $http({
-              method: "GET",
-              url: ("https://davids-restaurant.herokuapp.com/categories.json")
+        // var testHttp = $http({
+        //     method: "GET",
+        //     url: ("https://davids-restaurant.herokuapp.com/categories.json")
 
-            }).then (function success(response) {
-                console.log(response.data);
-            })
-            .catch (function (error) {
-                console.log(error);
-            });
-        
-            return testThisBS;
+        // }).then (function success(response) {
+        //     mac.categoriesArray=response.data;
+        //     console.log("mac.categoriesArray", mac.categoriesArray);
+        // })
+        // .catch (function (error) {
+        //     console.log(error);
+        // });
+    
+        return testHttp;
 
         // Get a promise back and then display it
         // This may all get moved to partial page html and directory

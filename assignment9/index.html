@@ -1,0 +1,47 @@
+<!doctype html>
+
+<html lang="en">
+	
+	<head>
+		<title>Menu Viewer</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="styles/bootstrap.min.css">
+		<link rel="stylesheet" href="styles/styles.css">
+
+	</head>
+
+
+	<body ng-app='MenuApp'>
+		<!-- <body> -->
+
+		<div class="container" ng-controller='MenuAppController as menu'>
+			<div class="jumbotron text-center">
+				<h1 class="display-4 text-center">Welcome to our Restaurant</h1>
+				<p class="lead text-center">Please click on the button below to view 
+					our menu categories
+				</p>
+				<hr class="my-4">
+				<p>
+					<!-- button to call service to get a list of catagories
+						and move to the categories page -->
+					<button class="btn btn-primary btn-block"
+						    ng-click="menu.test();">
+						Show Menu Categories
+					</button>
+				</p>
+			</div>
+		</div>
+
+		<!-- Libraries -->
+		<script src="lib/jquery-3.4.1.js"></script>
+		<script src="lib/angular.min.js"></script>
+	
+		<!-- Modules -->
+		<script src="src/menuapp/menuapp.module.js"></script>
+		<script src="src/menuapp/menuapp.controller.js"></script>
+		<script src="src/menuapp/menuapp.factory.js"></script>
+
+	</body>
+</html>

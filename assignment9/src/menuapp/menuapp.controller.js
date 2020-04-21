@@ -5,31 +5,20 @@
 angular.module('MenuApp')
 .controller('MenuAppController', MenuAppController);
 
-MenuAppController.$inject = ['$http', 'MenuAppFactory'];
-function MenuAppController($http, MenuAppFactory) {
+MenuAppController.$inject = ['$http', 'MenuCategoriesService'];
+function MenuAppController($http, MenuCategoriesService) {
     var mac = this;
 
-    // Test factory/service
-    var testService = MenuAppFactory();
-
     mac.categoriesArray = [];
-
-    // var promise = testService.getMenuCategories();
-    // promise.then (function (response) {
-    //     console.log(promise);
-    // })
-    // .catch (function (error) {
-    //     console.log(error);
-    // })
-
 
     // Test function called by button
     mac.test = function () {
         console.log(">> In MenuAppController:test");
 
-        var bsAngular = testService.getMenuCategories();
-        bsAngular.then(function (response) {
-            console.log(">> At controller", response.data);
+        var catagoryPromise = MenuCategoriesService.testFunction();
+        catagoryPromise.then(function (response) {
+            mac.categoriesArray=response.data;
+            console.log(">> At controller", mac.categoriesArray);
         })
         .catch(function (error) {
             console.log(error);
@@ -47,7 +36,7 @@ function MenuAppController($http, MenuAppFactory) {
         //     console.log(error);
         // });
     
-        return testHttp;
+        // return testHttp;
 
         // Get a promise back and then display it
         // This may all get moved to partial page html and directory

@@ -29,45 +29,67 @@
 				<p>
 					<!-- button to call service to get a list of catagories
 						and move to the categories page -->
-					<button class="btn btn-primary btn-block"
+					<button class="btn btn-primary btn-block mb-3"
 						    ng-click="menu.test();">
 						Show Menu Categories
 					</button>
 				</p>
+
+				<!-- Test buttons-->
+
+				<!-- <a ui-sref="categoreies" >Categories</a>
+				<a ui-sref="items">Items</a> -->
+				  
+				<a class="btn btn-primary" 
+				   ui-sref="categoreies">categories
+				</a>
+
+				<a class="btn btn-secondary" 
+				   ui-sref="items">items
+				</a>
+				<a class="btn btn-dark"
+				   href='#'>Back to Home
+				</a>
+
+				<!-- <a ui-sref="tab1" ui-sref-active="activeTab">Tab 1</a>
+				<a ui-sref="tab2" ui-sref-active="activeTab">Tab 2</a> -->
+				
+
 			</div>
 
 			<menu-app-component></menu-app-component>
-
+	
+			<div class="card-columns">
 			
-			<div class="row">
-				<div class="card-columns"></div>
-					<div ng-repeat="item in menu.categoriesArray">
-
-						<div class="card text-center border-primary mb-resp m-2">
-							<h4 class="card-header text-center">
-								{{item.name}}
-							</h4>
-							<div class="card-body">
-								{{item.special_instructions}}
-							</div>
-							<div class="card-footer">
-								{{item.short_name}}
-							</div>
-						</div>
-
-					</div> 
+				<div ng-repeat="item in menu.categoriesArray"
+						class="card text-center border-primary">
+					<h4 class="card-header text-center">
+						{{item.name}}
+					</h4>
+					<div class="card-body">
+						{{item.special_instructions}}
+					</div>
+					<div class="card-footer">
+						{{item.short_name}}
+						{{$index}}
+					</div>
 				</div>
-			</div>
+
+			</div> 
+
+			<ui-view></ui-view>
 
 		</div>	<!-- Container and controller-->
 
-
+		
 		
 
 
 		<!-- Libraries -->
 		<script src="lib/jquery-3.4.1.js"></script>
 		<script src="lib/angular.min.js"></script>
+		<script src="lib/angular-ui-router.min.js"></script> <!-- router link -->
+
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" 
 				integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
 				crossorigin="anonymous"></script>
@@ -80,10 +102,16 @@
 	
 		<!-- Modules -->
 		<script src="src/menuapp/menuapp.module.js"></script>
+
+		<!-- Routes -->
+		<!-- Must go before the elements the cause the routes to chagne! -->
+		<!-- <script src="src/app.js"></script> -->
+		<script src="src/routes.js"></script>
+
+		<!-- MemuApp module artifacts -->
 		<script src="src/menuapp/menuapp.controller.js"></script>
-		<script src="src/menuapp/menuapp.factory.js"></script>
+		<script src="src/menuapp/menuapp.service.js"></script>
 		<script src="src/menuapp/menuapp.component.js"></script>
-		<script src="src/app.js"></script>
 
 	</body>
 </html>

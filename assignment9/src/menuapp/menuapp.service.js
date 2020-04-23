@@ -7,13 +7,13 @@
     .constant('ApiForCategories', 'https://davids-restaurant.herokuapp.com');
 
 
-    // Define the service the factory creates
+    // Define the service
     MenuCategoriesService.$inject = ['$http', 'ApiForCategories'];
     function MenuCategoriesService ($http, ApiForCategories) {
 
         // Assign the 'this' value
         var mCSService = this;
-        console.log("In the MenuApp Service!");
+        console.log(">> In the MenuApp Service!");
         
         mCSService.testFunction = function () {
             console.log("In MenuCategoriesService.testFunction");

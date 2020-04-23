@@ -1,13 +1,14 @@
 (function () {
     'use strict';
     
-
-    angular.module('MenuApp', []);
+    // https://www.tutorialspoint.com/angularjs/angularjs_modules.htm
+    // https://stackoverflow.com/questions/22966858/angularjs-access-service-from-different-module
+    angular.module('MenuApp', ['Data'])
     
-    angular.module('MenuApp')
     .config(function () {
       console.log("MenuApp config fired.");
     })
+    
     .run(function () {
       console.log("MenuApp run fired.");
     });

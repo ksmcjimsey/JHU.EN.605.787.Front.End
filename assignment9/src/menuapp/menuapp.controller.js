@@ -5,20 +5,26 @@
 angular.module('MenuApp')
 .controller('MenuAppController', MenuAppController);
 
+// Not sure why I can't use the service here because Data module is a depencency in MenuApp module??
+// MenuAppController.$inject = ['$http', 'MenuCategoriesService', 'MenuDataService'];
+// function MenuAppController($http, MenuCategoriesService, MenuDataService) {
 MenuAppController.$inject = ['$http', 'MenuCategoriesService'];
 function MenuAppController($http, MenuCategoriesService) {
+    
+    console.log(">> In MenuAppController");
+    
     var mac = this;
 
     mac.categoriesArray = [];
 
     // Test function called by button
     mac.test = function () {
-        console.log(">> In MenuAppController:test");
+        console.log("In MenuAppController:test");
 
         var catagoryPromise = MenuCategoriesService.testFunction();
         catagoryPromise.then(function (response) {
             mac.categoriesArray=response.data;
-            console.log(">> At controller", mac.categoriesArray);
+            console.log("Array value in menu categories controller", mac.categoriesArray);
         })
         .catch(function (error) {
             console.log(error);

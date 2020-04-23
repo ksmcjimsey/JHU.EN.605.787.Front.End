@@ -17,6 +17,7 @@
 
 
 	<body ng-app='MenuApp'>
+		<!-- <body> -->
 
 		<div class="container" ng-controller='MenuAppController as menu'>
 			<div class="jumbotron text-center">
@@ -25,14 +26,14 @@
 					our menu categories
 				</p>
 				<hr class="my-4">
-				<div>
+				<p>
 					<!-- button to call service to get a list of catagories
 						and move to the categories page -->
 					<button class="btn btn-primary btn-block mb-3"
 						    ng-click="menu.test();">
 						Show Menu Categories
 					</button>
-				</div>
+				</p>
 
 				<!-- Test buttons-->
 
@@ -44,7 +45,7 @@
 				</a>
 
 				<a class="btn btn-secondary" 
-				   ui-sref="data">data
+				   ui-sref="items">items
 				</a>
 				<a class="btn btn-dark"
 				   href='#'>Back to Home
@@ -53,31 +54,28 @@
 				<!-- <a ui-sref="tab1" ui-sref-active="activeTab">Tab 1</a>
 				<a ui-sref="tab2" ui-sref-active="activeTab">Tab 2</a> -->
 				
-				
-
 
 			</div>
 
-
 			<menu-app-component></menu-app-component>
 	
-				<div class="card-columns">
-				
-					<div ng-repeat="item in menu.categoriesArray"
-							class="card text-center border-primary">
-						<h4 class="card-header text-center">
-							{{item.name}}
-						</h4>
-						<div class="card-body">
-							{{item.special_instructions}}
-						</div>
-						<div class="card-footer">
-							{{item.short_name}}
-							{{$index}}
-						</div>
+			<div class="card-columns">
+			
+				<div ng-repeat="item in menu.categoriesArray"
+						class="card text-center border-primary">
+					<h4 class="card-header text-center">
+						{{item.name}}
+					</h4>
+					<div class="card-body">
+						{{item.special_instructions}}
 					</div>
-	
-				</div> 
+					<div class="card-footer">
+						{{item.short_name}}
+						{{$index}}
+					</div>
+				</div>
+
+			</div> 
 
 			<ui-view></ui-view>
 
@@ -103,22 +101,17 @@
 				crossorigin="anonymous"></script>
 	
 		<!-- Modules -->
-		<script src="src/data/data.module.js"></script>
 		<script src="src/menuapp/menuapp.module.js"></script>
-		
+
 		<!-- Routes -->
 		<!-- Must go before the elements the cause the routes to chagne! -->
 		<!-- <script src="src/app.js"></script> -->
 		<script src="src/routes.js"></script>
 
-		<!-- data module artifacts -->
-		<script src="src/data/menudata.service.js"></script>
-
 		<!-- MemuApp module artifacts -->
 		<script src="src/menuapp/menuapp.controller.js"></script>
 		<script src="src/menuapp/menuapp.service.js"></script>
 		<script src="src/menuapp/menuapp.component.js"></script>
-
 
 	</body>
 </html>

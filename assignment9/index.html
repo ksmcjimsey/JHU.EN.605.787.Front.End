@@ -20,11 +20,11 @@
 
 		<div class="container" ng-controller='MenuAppController as menu'>
 			<div class="jumbotron text-center">
-				<h1 class="display-4 text-center">Welcome to our Restaurant</h1>
+				<!-- <h1 class="display-4 text-center">Welcome to our Restaurant</h1>
 				<p class="lead text-center">Please click on the button below to view 
 					our menu categories
 				</p>
-				<hr class="my-4">
+				<hr class="my-4"> -->
 				<div>
 					<!-- button to call service to get a list of catagories
 						and move to the categories page -->
@@ -40,11 +40,11 @@
 				<a ui-sref="items">Items</a> -->
 				  
 				<a class="btn btn-primary" 
-				   ui-sref="categoreies">categories
+				   ui-sref="categories">categories
 				</a>
 
 				<a class="btn btn-secondary" 
-				   ui-sref="data">data
+				   ui-sref="items">items
 				</a>
 				<a class="btn btn-dark"
 				   href='#'>Back to Home
@@ -59,7 +59,9 @@
 			</div>
 
 
-			<menu-app-component></menu-app-component>
+			<!-- This works but the <ui-view> also works and 
+				 comes from the router -->
+			<!-- <menu-app-component></menu-app-component> -->
 	
 				<div class="card-columns">
 				
@@ -79,9 +81,13 @@
 	
 				</div> 
 
+
+			<!-- Try to build from this point on. -->
 			<ui-view></ui-view>
+			
 
 		</div>	<!-- Container and controller-->
+
 
 		
 		
@@ -101,16 +107,16 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
 				integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 				crossorigin="anonymous"></script>
-	
+
 		<!-- Modules -->
 		<script src="src/data/data.module.js"></script>
 		<script src="src/menuapp/menuapp.module.js"></script>
-		
+
 		<!-- Routes -->
-		<!-- Must go before the elements the cause the routes to chagne! -->
+		<!-- Must go before the elements the cause the routes to change! -->
 		<!-- <script src="src/app.js"></script> -->
 		<script src="src/routes.js"></script>
-
+		
 		<!-- data module artifacts -->
 		<script src="src/data/menudata.service.js"></script>
 

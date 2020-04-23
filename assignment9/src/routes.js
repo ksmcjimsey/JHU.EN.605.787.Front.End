@@ -16,15 +16,29 @@
 
         // Set up UI states
       $stateProvider
-      .state('categoreies', {
-        url: '/categories',
-        // template: '<div>This is TAB 1 content</div>
-        templateUrl: 'src/categories/categories.template.html'
+
+      .state('home', {
+        url: '/',
+        templateUrl: 'src/menuapp/templates/menuapp.template.html'
       })
 
-      .state('data', {
-        url: '/data',   // Optional but normally used.  If not here then the URL does not exist but can still be referenced  ui-sref
-        templateUrl: 'src/data/data.template.html'
+      // First list of categories
+      .state('categories', {
+        url: '/categories',
+        // template: '<div>This is TAB 1 content</div>
+        templateUrl: 'src/categories/categories.template.html',
+        controller: 'MenuAppController as menuCtrl',
+        // resolve: {
+        //   catData: ['MenuDataService', function(MenuDataService) {
+        //     return MenuDataService.getAllCategories();
+        //   }]
+        resolve: { myData: 'some data'}
+        // }
+      })
+
+      .state('items', {
+        url: '/items',   // Optional but normally used.  If not here then the URL does not exist but can still be referenced  ui-sref
+        templateUrl: 'src/items/items.template.html'
       });
 
     }   // End of function RoutesConfig

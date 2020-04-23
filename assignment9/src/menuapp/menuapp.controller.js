@@ -8,8 +8,10 @@ angular.module('MenuApp')
 // Not sure why I can't use the service here because Data module is a depencency in MenuApp module??
 // MenuAppController.$inject = ['$http', 'MenuCategoriesService', 'MenuDataService'];
 // function MenuAppController($http, MenuCategoriesService, MenuDataService) {
-MenuAppController.$inject = ['$http', 'MenuCategoriesService'];
-function MenuAppController($http, MenuCategoriesService) {
+// MenuAppController.$inject = ['$http', 'MenuCategoriesService'];
+// function MenuAppController($http, MenuCategoriesService) {
+MenuAppController.$inject = ['$http', 'MenuCategoriesService', 'myData'];
+function MenuAppController($http, MenuCategoriesService, myData) {
     
     console.log(">> In MenuAppController");
     

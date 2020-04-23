@@ -5,7 +5,7 @@
     angular.module('Data')
     .service('MenuDataService', MenuDataService)
     .constant('ApiForCategories', 'https://davids-restaurant.herokuapp.com/categories.json')
-    .constant('ApiForItems', 'https://davids-restaurant.herokuapp.com/menu_items.json');
+    .constant('ApiForItems', 'https://davids-restaurant.herokuapp.com/menu_items.json?category=');
 
 
     // Define the service
@@ -26,10 +26,25 @@
                 url: (ApiForCategories)
             });
 
-            console.log ("response valeu in service.getAllCategories", response);
+            console.log ("response value in service.getAllCategories", response);
             return response;
 
         };
+
+
+        service.getItemsForCategory = function (categoryShortName) {
+
+            console.log("In service.getItemsForCategory");
+
+            var response = $http({
+                method: "GET",
+                url: (ApiForItems + categoryShortName)
+            });
+
+            console.log ("response value in service.getItemsForCategory", response);
+            return response;
+
+        }
 
 
     }

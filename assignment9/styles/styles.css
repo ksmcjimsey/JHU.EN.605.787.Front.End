@@ -2,8 +2,7 @@
     width: 300px;
 }
 
-.card:hover {
+.card-select:hover {
     background-color: aqua;
     box-shadow: 5px 10px;
-    
 }

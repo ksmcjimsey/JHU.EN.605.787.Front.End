@@ -16,9 +16,10 @@
              each card. -->
         <div class="card-columns">
             
+            <!-- some how need the short name passed in ui-sref -->
             <div ng-repeat="item in $ctrl.categoriesArray"
-                    class="card text-center border-primary"
-                    ui-sref="items">
+                    class="card text-center border-primary card-select"
+                    ui-sref="items({shortName: item.short_name})">
                 <h4 class="card-header text-center">
                     {{item.name}}
                 </h4>
@@ -26,8 +27,8 @@
                     {{item.special_instructions}}
                 </div>
                 <div class="card-footer">
-                    {{item.short_name}} -
-                    {{$index}}
+                    {{item.short_name}}
+                    <!-- -{{$index}} -->
                 </div>
             </div>
 

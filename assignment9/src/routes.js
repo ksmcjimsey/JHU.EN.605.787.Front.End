@@ -44,8 +44,6 @@
         templateUrl: 'src/categories/categories.template.html',
         // This controller, if used refers to its own controller
         controller: 'CategoriesController as $ctrl',
-        // controller: 'MenuAppController as $ctrl',
-        // controller: 'CategoriesController',
         resolve: {
           catData: ['MenuDataService', function(MenuDataService) {
             return MenuDataService.getAllCategories();
@@ -57,7 +55,7 @@
       .state('items', {
         // Optional but normally used.  If not here then the URL does not 
         // exist but can still be referenced  ui-sref
-        url: '/items',
+        url: '/items/{shortName}',
         templateUrl: 'src/items/items.template.html',
         controller: 'ItemsController as $ctrl',
 
@@ -67,8 +65,10 @@
         // myData has a value injected into ItemsController with a key
         // of myData
         resolve: {
-          itemsData: ['MenuDataService', function (MenuDataService) {
-            return MenuDataService.getItemsForCategory('L');
+          itemsData: ['$stateParams', 'MenuDataService', 
+                      function ($stateParams, MenuDataService) {
+            // return MenuDataService.getItemsForCategory('L');
+            return MenuDataService.getItemsForCategory($stateParams.shortName);
           }]
         }
       });

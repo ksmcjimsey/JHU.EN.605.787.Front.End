@@ -3,11 +3,9 @@
     
     angular.module('MenuApp')
     .component('menuAppComponent', {
-        templateUrl: 'src/menuapp/menuapp.template.html',
+        templateUrl: 'src/menuapp/templates/menuapp.template.html',
         controller: MenuAppComponentController
     });
-
-})();
 
 
 MenuAppComponentController.$inject = ['$rootScope'];
@@ -16,3 +14,6 @@ function MenuAppComponentController($rootScope) {
 
     console.log(">> Inside MenuAppComponentController");
 }
+
+
+})();

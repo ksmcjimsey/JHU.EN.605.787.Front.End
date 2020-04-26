@@ -2,43 +2,62 @@
 (function () {
     'uses strict';
 
-    angular.module('MenuApp',['ui.router']);
+    // Had to define MenuApp module here.  Could not 
+    // use a seperate module to define it for some unknown 
+    // reason.  Crapppy error message from Angular
+    // Router Step 3: ui.router dependency
+    angular.module('MenuApp', ['ui.router', 'Data'])
+    .config(function () {
+      console.log("MenuApp module config fired.");
+    })
+    
+    .run(function () {
+      console.log("MenuApp module run fired.");
+    });
 
+
+    // Attach Router to the MenuApp routing using the config processing step.
     angular.module('MenuApp')
     .config(RoutesConfig);  // configures the routes
 
     // Configuration for the routes
     RoutesConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
     function RoutesConfig($stateProvider, $urlRouterProvider) {
-
-        // Redirect to tab 1 if no other URL matches
-        $urlRouterProvider.otherwise('/');
+      
+      // Redirect to tab 1 if no other URL matches
+      $urlRouterProvider.otherwise('/home');
 
         // Set up UI states
       $stateProvider
 
+      // /index.html - returns html, css, and js
       .state('home', {
-        url: '/',
+        url: '/home',
         templateUrl: 'src/menuapp/templates/menuapp.template.html'
       })
 
       // First list of categories
+      // /index.html#/categoreis - the # keeps the request from going to the server
+      // The new template may still be requested through AJAX by the js code
       .state('categories', {
         url: '/categories',
-        // template: '<div>This is TAB 1 content</div>
         templateUrl: 'src/categories/categories.template.html',
-        controller: 'MenuAppController as menuCtrl',
+        // This controller, if used refers to its own controller
+        //controller: 'CategoriesController as $ctrl',
+        controller: 'MenuAppController as $ctrl',
+        //controller: 'CategoriesController',
         // resolve: {
         //   catData: ['MenuDataService', function(MenuDataService) {
         //     return MenuDataService.getAllCategories();
         //   }]
-        resolve: { myData: 'some data'}
+        //resolve: { myData: 'some data'}
         // }
       })
 
       .state('items', {
         url: '/items',   // Optional but normally used.  If not here then the URL does not exist but can still be referenced  ui-sref
-        templateUrl: 'src/items/items.template.html'
+        templateUrl: 'src/items/items.template.html',
+        //controller: 'ItemsController as $ctrl',
       });
 
     }   // End of function RoutesConfig

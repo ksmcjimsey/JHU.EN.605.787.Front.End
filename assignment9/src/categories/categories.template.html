@@ -1,1 +1,43 @@
-<div>This is TAB 1 content</div>
+
+<div class="container">
+<!-- <div class="container" ng-controller='MenuAppController as $ctrl'> -->
+    <div class="jumbotron text-center">
+        <h1 class="display-5 text-center">Categories for the Restaurant</h1>
+        <p class="lead text-center">Click on one of the categories to see the menu items</p>
+        <hr class="my-4">
+
+        <!-- Button that will route back to home-->
+        <a class ="btn btn-primary btn-block text-light mb-4"
+           href="/">
+            Back to Home
+        </a>
+
+        <!-- Need to get the categories from the data service -->
+        <!-- Next steps: 1. move categories component outside of 
+             routing.  2. create test values in the categories controller 
+             and try to use them in this file.  3. try to get data service
+             in the controller but if that doesn't work hard code request
+             and fill in this page with cards. -->
+        <div class="card-columns">
+            
+            <div ng-repeat="item in $ctrl.categoriesArray"
+                    class="card text-center border-primary"
+                    ui-sref="items">
+                <h4 class="card-header text-center">
+                    {{item.name}}
+                </h4>
+                <div class="card-body">
+                    {{item.special_instructions}}
+                </div>
+                <div class="card-footer">
+                    {{item.short_name}} -
+                    {{$index}}
+                </div>
+            </div>
+
+        </div> 
+
+        <p> {{ $ctrl.testVar }} </p>
+
+    </div>
+</div>

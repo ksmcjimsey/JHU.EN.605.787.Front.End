@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="en">
+<html lang="en" ng-app='MenuApp'>
 	
 	<head>
 		<title>Menu Viewer</title>
@@ -16,87 +16,27 @@
 	</head>
 
 
-	<body ng-app='MenuApp'>
+	<body>
 
-		<div class="container" ng-controller='MenuAppController as menu'>
-			<div class="jumbotron text-center">
-				<!-- <h1 class="display-4 text-center">Welcome to our Restaurant</h1>
-				<p class="lead text-center">Please click on the button below to view 
-					our menu categories
-				</p>
-				<hr class="my-4"> -->
-				<div>
-					<!-- button to call service to get a list of catagories
-						and move to the categories page -->
-					<button class="btn btn-primary btn-block mb-3"
-						    ng-click="menu.test();">
-						Show Menu Categories
-					</button>
-				</div>
+		<!-- The ui-view seems to load the view but not run the component or controller
+			 The specific component call runs the component and controller but I'm 
+			 not sure how to make it only run when the routing goes to it like the 
+			 view does. -->
 
-				<!-- Test buttons-->
+		<!-- Routing Step 2: interchangable view -->
+		<ui-view></ui-view>
 
-				<!-- <a ui-sref="categoreies" >Categories</a>
-				<a ui-sref="items">Items</a> -->
-				  
-				<a class="btn btn-primary" 
-				   ui-sref="categories">categories
-				</a>
-
-				<a class="btn btn-secondary" 
-				   ui-sref="items">items
-				</a>
-				<a class="btn btn-dark"
-				   href='#'>Back to Home
-				</a>
-
-				<!-- <a ui-sref="tab1" ui-sref-active="activeTab">Tab 1</a>
-				<a ui-sref="tab2" ui-sref-active="activeTab">Tab 2</a> -->
-				
-				
-
-
-			</div>
-
-
-			<!-- This works but the <ui-view> also works and 
-				 comes from the router -->
-			<!-- <menu-app-component></menu-app-component> -->
-	
-				<div class="card-columns">
-				
-					<div ng-repeat="item in menu.categoriesArray"
-							class="card text-center border-primary">
-						<h4 class="card-header text-center">
-							{{item.name}}
-						</h4>
-						<div class="card-body">
-							{{item.special_instructions}}
-						</div>
-						<div class="card-footer">
-							{{item.short_name}}
-							{{$index}}
-						</div>
-					</div>
-	
-				</div> 
-
-
-			<!-- Try to build from this point on. -->
-			<ui-view></ui-view>
-			
-
-		</div>	<!-- Container and controller-->
-
-
-		
-		
+		<!-- Specific views -->
+		<!-- <menu-app-component></menu-app-component>
+		<categories-component></categories-component>	 -->
 
 
 		<!-- Libraries -->
 		<script src="lib/jquery-3.4.1.js"></script>
 		<script src="lib/angular.min.js"></script>
-		<script src="lib/angular-ui-router.min.js"></script> <!-- router link -->
+
+		<!-- Routing step 1: router link - must be loaded after angular: angular.min.js -->
+		<script src="lib/angular-ui-router.min.js"></script>
 
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" 
 				integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -108,22 +48,25 @@
 				integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 				crossorigin="anonymous"></script>
 
-		<!-- Modules -->
-		<script src="src/data/data.module.js"></script>
-		<script src="src/menuapp/menuapp.module.js"></script>
-
 		<!-- Routes -->
-		<!-- Must go before the elements the cause the routes to change! -->
+		<!-- Must go before the elements the cause the routes to change! 
+			 The MenuApp module is defined in the routes file. -->
 		<!-- <script src="src/app.js"></script> -->
 		<script src="src/routes.js"></script>
-		
-		<!-- data module artifacts -->
-		<script src="src/data/menudata.service.js"></script>
 
+		<!-- Modules -->
+		<!-- <script src="src/menuapp/menuapp.module.js"></script> -->
+		<script src="src/data/data.module.js"></script>
+		
 		<!-- MemuApp module artifacts -->
 		<script src="src/menuapp/menuapp.controller.js"></script>
-		<script src="src/menuapp/menuapp.service.js"></script>
-		<script src="src/menuapp/menuapp.component.js"></script>
+		<script src="src/menuapp/menuapp.component.js"></script>	
+		<script src="src/categories/categories.component.js"></script>
+		<script src="src/items/items.component.js"></script>
+		<!-- <script src="src/menuapp/menuapp.service.js"></script> -->
+
+		<!-- data module artifacts -->
+		<script src="src/data/menudata.service.js"></script>
 
 
 	</body>

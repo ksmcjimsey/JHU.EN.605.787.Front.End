@@ -1,0 +1,131 @@
+<!doctype html>
+
+<html lang="en" ng-app='MenuApp'>
+	
+	<head>
+		<title>Menu Viewer</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="styles/styles.css">
+		<link rel="stylesheet" 
+			  href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+			  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+			  crossorigin="anonymous">
+
+	</head>
+
+
+	<body>
+
+		<div class="container" ng-controller='MenuAppController as menu'>
+			<div class="jumbotron text-center">
+				<!-- <h1 class="display-4 text-center">Welcome to our Restaurant</h1>
+				<p class="lead text-center">Please click on the button below to view 
+					our menu categories
+				</p>
+				<hr class="my-4"> -->
+				<div>
+					<!-- button to call service to get a list of catagories
+						and move to the categories page -->
+					<button class="btn btn-primary btn-block mb-3"
+						    ng-click="menu.test();">
+						Show Menu Categories
+					</button>
+				</div>
+
+				<!-- Test buttons-->
+
+				<!-- <a ui-sref="categoreies" >Categories</a>
+				<a ui-sref="items">Items</a> -->
+				  
+				<a class="btn btn-primary" 
+				   ui-sref="categories">categories
+				</a>
+
+				<a class="btn btn-secondary" 
+				   ui-sref="items">items
+				</a>
+
+				<a class="btn btn-dark"
+				   href='#'>Back to Home
+				</a>
+
+				<!-- <a ui-sref="tab1" ui-sref-active="activeTab">Tab 1</a>
+				<a ui-sref="tab2" ui-sref-active="activeTab">Tab 2</a> -->
+				
+				
+
+
+			</div>
+
+
+			<!-- This works but the <ui-view> also works and 
+				 comes from the router -->
+			<!-- <menu-app-component></menu-app-component> -->
+	
+				<div class="card-columns">
+				
+					<div ng-repeat="item in menu.categoriesArray"
+							class="card text-center border-primary">
+						<h4 class="card-header text-center">
+							{{item.name}}
+						</h4>
+						<div class="card-body">
+							{{item.special_instructions}}
+						</div>
+						<div class="card-footer">
+							{{item.short_name}}
+							{{$index}}
+						</div>
+					</div>
+	
+				</div> 
+
+
+			<!-- Try to build from this point on. -->
+			<ui-view></ui-view>
+			
+
+		</div>	<!-- Container and controller-->
+
+
+		
+		
+
+
+		<!-- Libraries -->
+		<script src="lib/jquery-3.4.1.js"></script>
+		<script src="lib/angular.min.js"></script>
+		<script src="lib/angular-ui-router.min.js"></script> <!-- router link -->
+
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" 
+				integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+				crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+				integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+				crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+				integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+				crossorigin="anonymous"></script>
+
+		<!-- Modules -->
+		<script src="src/data/data.module.js"></script>
+		<script src="src/menuapp/menuapp.module.js"></script>
+
+		<!-- Routes -->
+		<!-- Must go before the elements the cause the routes to change! -->
+		<!-- <script src="src/app.js"></script> -->
+		<script src="src/routes.js"></script>
+		
+		<!-- data module artifacts -->
+		<script src="src/data/menudata.service.js"></script>
+
+		<!-- MemuApp module artifacts -->
+		<script src="src/menuapp/menuapp.controller.js"></script>
+		<script src="src/menuapp/menuapp.service.js"></script>
+		<script src="src/menuapp/menuapp.component.js"></script>
+
+
+	</body>
+</html>

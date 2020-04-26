@@ -10,20 +10,26 @@
     .component('categoriesComponent', {
         templateUrl: 'src/categories/categories.template.html',
         //controller: CategoriesController
-    });
-    //.controller('CategoriesController', CategoriesController);
+    })
+    .controller('CategoriesController', CategoriesController);
 
 
     // Controller used for the categories partial page / view
-    // CategoriesController.$inject = ['MenuDataService'];
-    // function CategoriesController(MenuDataService) {
+    CategoriesController.$inject = ['catData'];
+    function CategoriesController(catData) {
         
-    //     console.log(">> In CategoriesController");
+        console.log(">> In CategoriesController");
 
-    //     var $ctrl = this;
+        var $ctrl = this;
         
-    //     // Test access to this controller from inside the html
-    //     $ctrl.testVar = "Is this working?"
+        // Test access to this controller from inside the html
+        // $ctrl.testVar = "Is this working?"
+
+        // Called the service from the router so I don't need to call it
+        // from this controller
+        console.log("catData.data: ", catData.data);
+        $ctrl.categoriesArray = catData.data;
+
 
     //     // Calling the data service here unless I figure out a way to
     //     // pass values from one controller to another.  The examples use 
@@ -40,6 +46,6 @@
     //         console.log(error);
     //     })
 
-    // }
+    }
 
 })();

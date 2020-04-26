@@ -1,23 +1,37 @@
 <div class="container">
     <div class="jumbotron text-center">
-        <h1 class="display-5 text-center">Menu Items for ???</h1>
+        <h1 class="display-5 text-center">Menu Items for {{ $ctrl.title }}</h1>
         <p class="lead text-center">
             To navigate back you may use the browser arrows or the buttons at the bottom
         </p>
         <hr class="my-4">
 
-        <!-- Need to get the categories from the data service -->
-        <div>
-
-        </div>
-
-        
-        <a class ="btn btn-primary text-light"  ui-sref="home">
+        <!-- Return button -->
+        <a class ="btn btn-primary text-light mb-4"  ui-sref="home">
             Back to Home
         </a>
-        <a class ="btn btn-secondary text-light"  ui-sref="categories">
+        <a class ="btn btn-secondary text-light mb-4"  ui-sref="categories">
             Back to categories
         </a>
+
+        <!-- Need to get the categories from the data service -->
+        <div class="card-columns">
+            
+            <div ng-repeat="item in $ctrl.itemsArray"
+                    class="card text-center border-primary"
+                    ui-sref="items">
+                <h4 class="card-header text-center">
+                    {{item.name}}
+                </h4>
+                <div class="card-body">
+                    {{item.description}}
+                </div>
+                <div class="card-footer">
+                    {{item.short_name}}
+                </div>
+            </div>
+
+        </div>
 
     </div>
 </div>

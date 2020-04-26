@@ -43,21 +43,34 @@
         url: '/categories',
         templateUrl: 'src/categories/categories.template.html',
         // This controller, if used refers to its own controller
-        //controller: 'CategoriesController as $ctrl',
-        controller: 'MenuAppController as $ctrl',
-        //controller: 'CategoriesController',
-        // resolve: {
-        //   catData: ['MenuDataService', function(MenuDataService) {
-        //     return MenuDataService.getAllCategories();
-        //   }]
+        controller: 'CategoriesController as $ctrl',
+        // controller: 'MenuAppController as $ctrl',
+        // controller: 'CategoriesController',
+        resolve: {
+          catData: ['MenuDataService', function(MenuDataService) {
+            return MenuDataService.getAllCategories();
+          }]
         //resolve: { myData: 'some data'}
-        // }
+        }
       })
 
       .state('items', {
-        url: '/items',   // Optional but normally used.  If not here then the URL does not exist but can still be referenced  ui-sref
+        // Optional but normally used.  If not here then the URL does not 
+        // exist but can still be referenced  ui-sref
+        url: '/items',
         templateUrl: 'src/items/items.template.html',
-        //controller: 'ItemsController as $ctrl',
+        controller: 'ItemsController as $ctrl',
+
+        // MenuDataService will be the string are injected into the function
+        // So the MenuDataService should inject into the function.
+        // MenuDataService.getItemsForCategory returns a promise.
+        // myData has a value injected into ItemsController with a key
+        // of myData
+        resolve: {
+          itemsData: ['MenuDataService', function (MenuDataService) {
+            return MenuDataService.getItemsForCategory('L');
+          }]
+        }
       });
 
     }   // End of function RoutesConfig

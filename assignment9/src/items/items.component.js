@@ -2,22 +2,30 @@
 (function () {
     'use strict;'
 
-    // Attach this controller to MenuApp module
-    // The .controller added to the module was not shown before but this is
-    // needed or the when we try to use the new controller we get a crappy
-    // error.
+
     angular.module('MenuApp')
     .component('itemsComponent', {
         templateUrl: 'src/items/items.template.html',
-        //controller: ItemsController
-        //controller: 'CategoriesController as $ctrl',
-
-        // 
-        resolve: {
-            myData: ['MenuDataService', function (MenuDataService) {
-                return MenuDataService.getItems("SP");
-            }]
-        }
+        //controller: 'ItemsController as $ctrl',
+        //controller: 'MenuAppController as $ctrl',
     })
+    .controller('ItemsController', ItemsController);
+
+
+    // Controller used for the items partial page / view
+    // myData is a service called in the routes.js items state
+    ItemsController.$inject = ['itemsData'];
+    function ItemsController(itemsData) {
+        
+        console.log(">> In ItemsController");
+        var $ctrl = this;
+
+        console.log("first: ", itemsData.data.category.name);
+        console.log("second:", itemsData.data.menu_items);
+        $ctrl.title = itemsData.data.category.name
+        $ctrl.itemsArray = itemsData.data.menu_items;
+
+    }
+
 
 })();

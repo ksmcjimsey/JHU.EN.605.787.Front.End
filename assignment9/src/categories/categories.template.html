@@ -12,12 +12,8 @@
             Back to Home
         </a>
 
-        <!-- Need to get the categories from the data service -->
-        <!-- Next steps: 1. move categories component outside of 
-             routing.  2. create test values in the categories controller 
-             and try to use them in this file.  3. try to get data service
-             in the controller but if that doesn't work hard code request
-             and fill in this page with cards. -->
+        <!-- run through the array and add cards and a url load for 
+             each card. -->
         <div class="card-columns">
             
             <div ng-repeat="item in $ctrl.categoriesArray"

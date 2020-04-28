@@ -18,12 +18,10 @@
 
 	<body>
 
-		<!-- The ui-view seems to load the view but not run the component or controller
-			 The specific component call runs the component and controller but I'm 
-			 not sure how to make it only run when the routing goes to it like the 
-			 view does. -->
-
 		<!-- Routing Step 2: interchangable view -->
+		<!--  The specific views below can have the controller direct data / variables 
+			  to them but I did not see a way for this generic view so I used the service 
+			  from the call from the routes file to pass the service promise data results. -->
 		<ui-view></ui-view>
 
 		<!-- Specific views -->

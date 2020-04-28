@@ -42,6 +42,7 @@
       .state('categories', {
         url: '/categories',
         templateUrl: 'src/categories/categories.template.html',
+
         // This controller, if used refers to its own controller
         controller: 'CategoriesController as $ctrl',
         resolve: {
@@ -59,11 +60,12 @@
         templateUrl: 'src/items/items.template.html',
         controller: 'ItemsController as $ctrl',
 
-        // MenuDataService will be the string are injected into the function
-        // So the MenuDataService should inject into the function.
+        // MenuDataService will be the string that are injected into the function
+        // so the MenuDataService should inject into the function.
         // MenuDataService.getItemsForCategory returns a promise.
         // myData has a value injected into ItemsController with a key
-        // of myData
+        // of myData.  $stateParams allows us to grab the parameter from the 
+        // url and use it in the service method call.
         resolve: {
           itemsData: ['$stateParams', 'MenuDataService', 
                       function ($stateParams, MenuDataService) {

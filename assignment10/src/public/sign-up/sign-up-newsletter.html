@@ -8,90 +8,110 @@
     <form name="newsletterForm" nonvalidate>
 
         <!-- FIRST NAME -->
-        <div class="form-group row">
-            <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
+        <div class="form-group row ">
+
+            <!-- First name form label and input-->
+            <div class="col-sm-1"></div>
+            <label for="firstName" class="col-sm-2 col-form-label .offset-sm-2">
+                First Name
+            </label>
             <div class="col-sm-6">
                 <input type="text" class="form-control" name="firstname" id="firstName"
-                    placeholder="Please enter your first name" 
-                    ng-model="signUpCtrl.user.firstname" required
-                    minlength="2" ng-maxlength="15">
+                       placeholder="Please enter your first name" 
+                       ng-model="signUpCtrl.user.firstname" required
+                       minlength="2" ng-maxlength="15">
             </div>
-        </div>
-        <!-- {{ signUpCtrl.user.firstname }} -->
+            <!-- {{ signUpCtrl.user.firstname }} -->
         
-        <!-- First name validation -->
-        <!-- Must match name attribute of the input tag -->
-        <span class="text-primary"
-            ng-if="(newsletterForm.firstname.$error.minlength ||
-                    newsletterForm.firstname.$error.required) &&
-                    newsletterForm.firstname.$touched">
-            First name must be at least two characters long.
-        </span>
-        <span class="text-primary"
-              ng-if="newsletterForm.firstname.$error.maxlength &&
-                     newsletterForm.firstname.$touched">
-            First name must be longer then 15 characters.
-        </span>
+            <!-- First name validation -->
+            <!-- Must match name attribute of the input tag -->
+            <span class="text-secondary"
+                  ng-if="(newsletterForm.firstname.$error.minlength ||
+                          newsletterForm.firstname.$error.required) &&
+                          newsletterForm.firstname.$touched">
+                First name must be at least two characters long.
+            </span>
+            <span class="text-secondary"
+                ng-if="newsletterForm.firstname.$error.maxlength &&
+                        newsletterForm.firstname.$touched">
+                First name must be longer then 15 characters.
+            </span>
 
+        </div>
+        
 
         <!-- LAST NAME -->
         <div class="form-group row">
+
+            <!-- Last name label and input-->
+            <div class="col-sm-1"></div>
             <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
             <div class="col-sm-6">
                 <input type="text" class="form-control" name="lastname" id="lastname"
-                    placeholder="Please enter your last name" 
-                    ng-model="signUpCtrl.user.lastname" required
-                    minlength="2" ng-maxlength="20">
+                       placeholder="Please enter your last name" 
+                       ng-model="signUpCtrl.user.lastname" required
+                       minlength="2" ng-maxlength="20">
             </div>
-        </div>
-        <!-- {{ signUpCtrl.user.lastname }} -->
+            <!-- {{ signUpCtrl.user.lastname }} -->
         
-        <!-- Last name validation -->
-        <span class="text-primary"
-            ng-if="(newsletterForm.lastname.$error.minlength ||
-                    newsletterForm.lastname.$error.required) &&
-                    newsletterForm.lastname.$touched">
-            Last name must be at least two characters long.
-        </span>
-        <span class="text-primary"
-              ng-if="newsletterForm.lastname.$error.maxlength &&
-                     newsletterForm.lastname.$touched">
-            Last name must be longer then 15 characters.
-        </span>
+            <!-- Last name validation -->
+            <span class="text-secondary"
+                ng-if="(newsletterForm.lastname.$error.minlength ||
+                        newsletterForm.lastname.$error.required) &&
+                        newsletterForm.lastname.$touched">
+                Last name must be at least two characters long.
+            </span>
+            <span class="text-secondary"
+                ng-if="newsletterForm.lastname.$error.maxlength &&
+                        newsletterForm.lastname.$touched">
+                Last name must be longer then 20 characters.
+            </span>
 
+        </div>
+        
 
         <!-- EMAIL -->
         <div class="form-group row">
+
+            <!-- email label and from -->
+            <div class="col-sm-1"></div>
             <label for="email" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-6">
                 <input type="email" class="form-control" name="email" id="email"
-                    placeholder="Please enter your email address" 
-                    ng-model="signUpCtrl.user.email" required>
+                       placeholder="Please enter your email address" 
+                       ng-model="signUpCtrl.user.email" required>
             </div>
+            <!-- {{ signUpCtrl.user.email }} -->
+
+            <!-- email validation -->
+            <span ng-if="newsletterForm.email.$invalid && newsletterForm.email.$touched">
+                Must enter a valid email address: handle@domain format.
+            </span>
+
         </div>
-        <!-- {{ signUpCtrl.user.email }} -->
-
-        <!-- email validation -->
-        <span ng-if="newsletterForm.email.$invalid && newsletterForm.email.$touched">
-            Must enter a valid email address: handle@domain format.
-        </span>
-
+        
 
         <!-- PHONE NUMBER-->
         <div class="form-group row">
-            <label for="email" class="col-sm-2 col-form-label">Email</label>
-            <div class="col-sm-6">
-                <input type="email" class="form-control" name="email" id="email"
-                    placeholder="Please enter your email address" 
-                    ng-model="signUpCtrl.user.email" required>
-            </div>
-        </div>
-        <!-- {{ signUpCtrl.user.email }} -->
 
-        <!-- email validation -->
-        <span ng-if="newsletterForm.email.$invalid && newsletterForm.email.$touched">
-            Must enter a valid email address: handle@domain format.
-        </span>
+            <div class="col-sm-1"></div>
+            <label for="phone" class="col-sm-2 col-form-label">Phone Number</label>
+            <div class="col-sm-6">
+                <input type="phone" class="form-control" name="phone" id="phone"
+                       placeholder="Please enter your phone number" 
+                       ng-model="signUpCtrl.user.phone" 
+                       pattern="(\d{3})-(\d{3})-(\d{4})">
+            </div>
+            <!-- {{ signUpCtrl.user.phone }} -->
+
+            <!-- phone number validation -->
+            <span ng-if="newsletterForm.phone.$invalid && newsletterForm.phone.$touched">
+                Phone must be in the format ###-###-####.
+            </span>
+
+        </div>
+        <!-- {{ signUpCtrl.user.phone }} -->
+
 
         <!-- FAVORITE DISH -->
         

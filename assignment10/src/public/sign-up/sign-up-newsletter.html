@@ -4,6 +4,11 @@
     <h2 id="sign-up-title" class="text-center">Sign Up for Our Newsletter</h2>
     <br /> 
 
+    <!-- Messages to the user if submitted successfully -->
+    <div class="alert alert-success" ng-if="signUpCtrl.successfulSubmit">
+        Your preferences have been submitted successfully
+    </div>
+
     <!-- Bootstrap Form -->
     <form name="newsletterForm" nonvalidate>
 
@@ -97,7 +102,7 @@
             <div class="col-sm-1"></div>
             <label for="phone" class="col-sm-2 col-form-label">Phone Number</label>
             <div class="col-sm-6">
-                <input type="phone" class="form-control" name="phone" id="phone"
+                <input type="text" class="form-control" name="phone" id="phone"
                        placeholder="Please enter your phone number" 
                        ng-model="signUpCtrl.user.phone" 
                        pattern="(\d{3})-(\d{3})-(\d{4})">
@@ -117,14 +122,14 @@
         <div class="form-group row">
 
             <div class="col-sm-1"></div>
-            <label for="short-name" class="col-sm-2 col-form-label">Phone Number</label>
+            <label for="short-name" class="col-sm-2 col-form-label">Favorite Dish</label>
             <div class="col-sm-4">
-                <input type="short-name" class="form-control" name="shortName" id="short-name"
+                <input type="text" class="form-control" name="shortName" id="short-name"
                        placeholder="Please enter your favorite dish by its short name" 
-                       ng-model="shortName.user.phone" required
+                       ng-model="signUpCtrl.user.shortName" required
                        minlength="2" ng-maxlength="4">
             </div>
-            {{ signUpCtrl.user.shortName }}
+            <!-- {{ signUpCtrl.user.shortName }} -->
 
             <!-- short name number validation -->
             <span class="text-secondary"
@@ -132,6 +137,10 @@
                         newsletterForm.shortName.$error.maxlength) &&
                         newsletterForm.shortName.$touched">
                 Selection must be a valid short name
+            </span>
+            <span class = "text-secondary"
+                  ng-if="!signUpCtrl.isSNValid">
+                No such menu number exists
             </span>
 
         </div>

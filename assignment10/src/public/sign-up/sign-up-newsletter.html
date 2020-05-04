@@ -114,8 +114,39 @@
 
 
         <!-- FAVORITE DISH -->
-        
+        <div class="form-group row">
 
+            <div class="col-sm-1"></div>
+            <label for="short-name" class="col-sm-2 col-form-label">Phone Number</label>
+            <div class="col-sm-4">
+                <input type="short-name" class="form-control" name="shortName" id="short-name"
+                       placeholder="Please enter your favorite dish by its short name" 
+                       ng-model="shortName.user.phone" required
+                       minlength="2" ng-maxlength="4">
+            </div>
+            {{ signUpCtrl.user.shortName }}
+
+            <!-- short name number validation -->
+            <span class="text-secondary"
+                ng-if="(newsletterForm.shortName.$error.minlength ||
+                        newsletterForm.shortName.$error.maxlength) &&
+                        newsletterForm.shortName.$touched">
+                Selection must be a valid short name
+            </span>
+
+        </div>
+
+
+        <!-- SUBMIT BUTTON -->
+        <!-- button is disabled if the whole form is invalid -->
+        <div class="row">
+            <div class="col-sm-8"></div>
+        
+            <button ng-disabled="newsletterForm.$invalid" ng-click="signUpCtrl.submit()"
+                    class="btn btn-success col-sm-1">
+                Submit
+            </button>
+        </div>
 
     </form>
 

@@ -23,23 +23,22 @@
         $ctrl.submit = function () {
 
         // Check values from the form
-        console.log("Name", $ctrl.user.firstname + " " + $ctrl.user.lastname);
-        console.log("Email", $ctrl.user.email);
-        console.log("Phone Number", $ctrl.user.phone);
-        console.log("Short Name", $ctrl.user.email);
+        // console.log("Name", $ctrl.user.firstname + " " + $ctrl.user.lastname);
+        // console.log("Email", $ctrl.user.email);
+        // console.log("Phone Number", $ctrl.user.phone);
+        // console.log("Short Name", $ctrl.user.shortName);
 
-        // Call service to see if the short name is valid
-        // Can check error code or maybe other fields if I can't figure
-        // out error code.
-        
-        /*** need the promise returned here and then check if it is true or not
-             in the then and catch.  Set values inside the then and catch    */
-        $ctrl.shortNamePromise = MenuService.getShortNamePromise($ctrl.user.shortName);
+        // Call the service to get the shortname data in promise form
+        // Check if valid or not
+        $ctrl.shortNamePromise = 
+            MenuService.getShortNamePromise($ctrl.user.shortName.toUpperCase());
 
         $ctrl.shortNamePromise.then(function (respone) {
             //console.log("Got items in isShortNameValid");
 
             // Call service to save the data
+            $ctrl.user.shortName = $ctrl.user.shortName.toUpperCase();
+            MenuService.setUserPreferences($ctrl.user);
 
             // If valid, set completed message to true
             $ctrl.successfulSubmit = true;

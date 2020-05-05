@@ -4,21 +4,27 @@
 angular.module('public')
 .controller('UserDataController', UserDataController);
 
-UserDataController.$inject = ['userData'];
-function UserDataController(userData) {
+UserDataController.$inject = ['userPref'];
+function UserDataController(userPref) {
 
   var $ctrl = this;
-  console.log("in UserDataController looking at userData service return",
-    userData);
 
-  if (Object.keys(userData).length==0) {
+  $ctrl.hasValue =  false;
+  $ctrl.phoneHasValue = true;
+
+
+  console.log("in UserDataController looking at userPref service return",
+  userPref);
+
+  if (Object.keys(userPref).length==0) {
     console.log ("Object is empty");
   }
 
 
 
   
-  $ctrl.userData = userData;
+  $ctrl.userPref = userPref;
+  console.log("Assign $ctrl.userPref: ", $ctrl.userPref);
 
 }
 

@@ -1,7 +1,65 @@
+<!-- Larger font for name and cute images for phone and email 
+     Need error message and link if no preferences were set -->
+
 <div class="container">
 
     <div class="row">
-        <h2 class="text-center">Users Data</h2>
+        <h2 class="col-md text-center">Users Data</h2>
+    </div>
+
+    <div ng-if="!userDataCtrl.hasValue">
+        <div class="alert alert-success text-center">
+            Not Signed Up Yet.
+            <span><a ui-sref="public.sign-up">Sign up Now!</a></span>
+        </div>
+    </div>
+
+    <div ng-if="userDataCtrl.hasValue">
+
+        <div class="row">
+            <h3 class="col-md text-center">
+                {{userDataCtrl.userPref.userData.firstname}} &nbsp;
+                {{userDataCtrl.userPref.userData.lastname}}
+            </h3>
+        </div>
+
+        <br>
+        
+        <div class="row">
+
+            <div class="col-md-3"></div>
+
+            <div class="col-md-3">
+                <span class="glyphicon glyphicon-envelope"></span> &nbsp;
+                {{userDataCtrl.userPref.userData.email}}
+            </div>
+
+            <div class="col-md-3">
+                <span class="glyphicon glyphicon-phone"
+                    ng-if="userDataCtrl.phoneHasValue"></span> &nbsp;
+                {{userDataCtrl.userPref.userData.phone}}
+            </div>
+
+        </div>
+
+        <br><hr><br>
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+
+            </div>
+
+            <div class="col-md-6">
+
+                
+            </div>
+
+        </div>
+
+
+
     </div>
 
 

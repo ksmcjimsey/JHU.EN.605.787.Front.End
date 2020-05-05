@@ -90,7 +90,7 @@ function MenuService($http, ApiPath) {
 
       .catch(function (error) {
         console.log ("Error in getUserPreferences", error);
-        return myInfo;
+        return;
       });
 
     }

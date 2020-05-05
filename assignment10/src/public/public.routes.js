@@ -62,7 +62,7 @@ function routeConfig ($stateProvider) {
       controller: 'UserDataController',
       controllerAs: 'userDataCtrl',
       resolve: {
-        userData: ['MenuService', function (MenuService) {
+        userPref: ['MenuService', function (MenuService) {
           return MenuService.getUserPreferences();
         }]
       }

@@ -4,11 +4,6 @@
     <h2 id="sign-up-title" class="text-center">Sign Up for Our Newsletter</h2>
     <br /> 
 
-    <!-- Messages to the user if submitted successfully -->
-    <div class="alert alert-success" ng-if="signUpCtrl.successfulSubmit">
-        Your preferences have been submitted successfully
-    </div>
-
     <!-- Bootstrap Form -->
     <form name="newsletterForm" nonvalidate>
 
@@ -158,5 +153,13 @@
         </div>
 
     </form>
+
+    <br>
+
+    <!-- Messages to the user if submitted successfully -->
+    <div class="alert alert-success text-center" 
+         ng-if="signUpCtrl.successfulSubmit">
+        Your information has been saved.
+    </div>
 
   </div>

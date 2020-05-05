@@ -50,11 +50,11 @@
                 <a ui-sref="public.menu">
                   <span class="glyphicon glyphicon-cutlery"></span><br class="hidden-xs"> Menu</a>
               </li>
-              <li>
-                <a href="#">
+              <li id="myInfoButton" ui-sref-active="active">
+                <a ui-sref="public.my-info">
                   <span class="glyphicon glyphicon-info-sign"></span><br class="hidden-xs"> My Info</a>
               </li>
-              <li>
+              <li id="signUpButton" ui-sref-active="active">
                 <a ui-sref="public.sign-up">
                   <span class="glyphicon glyphicon-certificate"></span><br class="hidden-xs"> Sign Up</a>
               </li>
@@ -133,6 +133,7 @@
     <script src="src/public/menu-items/menu-items.controller.js"></script>
     <script src="src/public/menu-item/menu-item.component.js"></script>
     <script src="src/public/sign-up/sign-up.controller.js"></script>
+    <script src="src/public/my-info/user-data.controller.js"></script>
 
     <!-- ADMIN SITE -->
 

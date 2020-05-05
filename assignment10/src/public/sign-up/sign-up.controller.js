@@ -43,6 +43,7 @@
             // If valid, set completed message to true
             $ctrl.successfulSubmit = true;
           })
+          
           .catch(function (error) {
             //console.log(error.data);
             // If not valid, set error message to true

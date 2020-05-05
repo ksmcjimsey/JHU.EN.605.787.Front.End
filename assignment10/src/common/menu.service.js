@@ -57,8 +57,51 @@ function MenuService($http, ApiPath) {
   
   }
 
-  // Retrieve a short name data from the server and return the data
-  // Used in routing where it will wait for the promise to be filled
+
+  // Return the user preferences
+  // Set up to be used by the routes.js where it will wait for the 
+  // promise to be filled before returning the data.
+  service.getUserPreferences = function() {
+
+    // Variables
+    var shortNameData = {};
+    var myInfo = {};
+
+    console.log ("userData shortNameData: ", shortNameData);
+    // If there is a short name then look up the data from the 
+    if (userData.shortName) {
+
+      return $http.get(ApiPath + '/menu_items/' + userData.shortName + ".json")
+      .then(function (response) {
+
+        shortNameData = response.data;
+        console.log ("shortNameData", shortNameData);
+
+        // package up the data
+        myInfo = {
+          userData: userData,
+          shortNameData: shortNameData
+        }
+        console.log ("myInfo", myInfo);
+
+        return myInfo;
+
+      })
+
+      .catch(function (error) {
+        console.log ("Error in getUserPreferences", error);
+        return myInfo;
+      });
+
+    }
+
+    else {
+
+      return myInfo;
+    }
+
+  }
+
 
 }
 

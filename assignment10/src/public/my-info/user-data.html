@@ -7,13 +7,17 @@
         <h2 class="col-md text-center">Users Data</h2>
     </div>
 
+    <!-- If the user has not set the data yet. -->
     <div ng-if="!userDataCtrl.hasValue">
+        <br>
         <div class="alert alert-success text-center">
             Not Signed Up Yet.
             <span><a ui-sref="public.sign-up">Sign up Now!</a></span>
         </div>
     </div>
 
+    <!-- Display all the user preferences if it has been set -->
+    <!-- Uses its controler to determine if things have been set. -->
     <div ng-if="userDataCtrl.hasValue">
 
         <div class="row">
@@ -25,8 +29,7 @@
 
         <br>
         
-        <div class="row">
-
+        <div class="row" ng-if="userDataCtrl.phoneHasValue">
             <div class="col-md-3"></div>
 
             <div class="col-md-3">
@@ -35,11 +38,16 @@
             </div>
 
             <div class="col-md-3">
-                <span class="glyphicon glyphicon-phone"
-                    ng-if="userDataCtrl.phoneHasValue"></span> &nbsp;
+                <span class="glyphicon glyphicon-phone"></span> &nbsp;
                 {{userDataCtrl.userPref.userData.phone}}
             </div>
+        </div>
 
+        <div class="row" ng-if="!userDataCtrl.phoneHasValue">
+            <div class="col text-center">
+                <span class="glyphicon glyphicon-envelope"></span> &nbsp;
+                {{userDataCtrl.userPref.userData.email}}
+            </div>
         </div>
 
         <br><hr><br>
@@ -47,13 +55,15 @@
         <div class="row">
 
             <div class="col-md-6">
-
+                <h4>{{userDataCtrl.userPref.shortNameData.name}}</h4>
+                <p>{{userDataCtrl.userPref.shortNameData.description}}</p>
 
             </div>
 
             <div class="col-md-6">
-
-                
+                <img class="img-responsive" width="300" height="200" 
+                     ng-src="{{userDataCtrl.basePath}}/images/{{userDataCtrl.userPref.shortNameData.short_name}}.jpg" 
+                     alt="{{userDataCtrl.userPref.shortNameData.name}}">
             </div>
 
         </div>

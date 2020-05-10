@@ -103,6 +103,11 @@ function MenuService($http, ApiPath) {
   }
 
 
+  service.getUserData = function () {
+      return userData;
+  }
+
+
 }
 
 

@@ -19,7 +19,8 @@
                 <input type="text" class="form-control" name="firstname" id="firstName"
                        placeholder="Please enter your first name" 
                        ng-model="signUpCtrl.user.firstname" required
-                       minlength="2" ng-maxlength="15">
+                       minlength="2" ng-maxlength="15"
+                       ng-init="signUpCtrl.user.firstname=signUpCtrl.uP.firstname">
             </div>
             <!-- {{ signUpCtrl.user.firstname }} -->
         
@@ -50,7 +51,8 @@
                 <input type="text" class="form-control" name="lastname" id="lastname"
                        placeholder="Please enter your last name" 
                        ng-model="signUpCtrl.user.lastname" required
-                       minlength="2" ng-maxlength="20">
+                       minlength="2" ng-maxlength="20"
+                       ng-init="signUpCtrl.user.lastname=signUpCtrl.uP.lastname" >
             </div>
             <!-- {{ signUpCtrl.user.lastname }} -->
         
@@ -79,7 +81,8 @@
             <div class="col-sm-6">
                 <input type="email" class="form-control" name="email" id="email"
                        placeholder="Please enter your email address" 
-                       ng-model="signUpCtrl.user.email" required>
+                       ng-model="signUpCtrl.user.email" required
+                       ng-init="signUpCtrl.user.email=signUpCtrl.uP.email" >
             </div>
             <!-- {{ signUpCtrl.user.email }} -->
 
@@ -100,7 +103,8 @@
                 <input type="text" class="form-control" name="phone" id="phone"
                        placeholder="Please enter your phone number (Optional)" 
                        ng-model="signUpCtrl.user.phone" 
-                       pattern="(\d{3})-(\d{3})-(\d{4})">
+                       pattern="(\d{3})-(\d{3})-(\d{4})"
+                       ng-init="signUpCtrl.user.phone=signUpCtrl.uP.phone" >
             </div>
             <!-- {{ signUpCtrl.user.phone }} -->
 
@@ -114,31 +118,105 @@
 
 
         <!-- FAVORITE DISH -->
-        <div class="form-group row">
+        <!-- Task 1 Version -->
+        <!-- <div class="form-group row">
 
             <div class="col-sm-1"></div>
             <label for="short-name" class="col-sm-2 col-form-label">Favorite Dish</label>
             <div class="col-sm-4">
                 <input type="text" class="form-control" name="shortName" id="short-name"
                        placeholder="Please enter your favorite dish by its short name" 
-                       ng-model="signUpCtrl.user.shortName" required
-                       minlength="2" ng-maxlength="4">
-            </div>
-            <!-- {{ signUpCtrl.user.shortName }} -->
+                       ng-model="signUpCtrl.user.shortName" favorite required
+                       minlength="2" ng-maxlength="4"> -->
+                       <!-- minlength="2" ng-maxlength="4" ng-change="signUpCtrl.test()"> -->
+            <!-- </div> -->
 
             <!-- short name number validation -->
-            <span class="text-secondary"
+            <!-- <span class="text-secondary"
                 ng-if="(newsletterForm.shortName.$error.minlength ||
                         newsletterForm.shortName.$error.maxlength) &&
                         newsletterForm.shortName.$touched">
-                Selection must be a valid short name
+                No such menu number exists
             </span>
             <span class = "text-secondary"
                   ng-if="!signUpCtrl.isSNValid">
                 No such menu number exists
             </span>
+            <span ng-show="newsletterForm.shortName.$pending.sn">
+                Checking if the short name is valid...
+            </span>
+
+            <div>
+                {{ signUpCtrl.user.shortName }}
+            </div>
+
+        </div> -->
+
+        <!-- Task 3 Bonus Version -->
+        <div class="form-group row">
+            <div class="col-sm-1"></div>
+            <label for="short-name" class="col-sm-2 col-form-label">Favorite Dish</label>
+            <div class="col-sm-4">    
+                <input class="form-control" id="short-name" type="text" name="shortName"
+                       placeholder="Please enter your favorite dish by its short name"
+                       ng-model="signUpCtrl.user.shortName" favorite required
+                       ng-init="signUpCtrl.user.shortName=signUpCtrl.uP.shortName" />
+
+                <span ng-show="newsletterForm.mcj.$pending.favorite3">Checking if this name is available...</span>
+                <span style="color:red;" ng-show="newsletterForm.mcj.$error.favorite3">
+                    No such menu number exists
+                </span>
+            </div>
+
+            <span ng-show="newsletterForm.shortName.$pending.favorite">
+                Checking if the short name is valid...
+            </span>
+
+            <span ng-show="newsletterForm.shortName.$error.favorite">
+                No such menu number exists
+            </span>
+
+            <!-- <div>
+                {{ signUpCtrl.user.shortName }}
+            </div>  -->
 
         </div>
+
+
+        <!-- TESTING DIRECTIVES -->
+        <!-- <div class="form-group row">
+            <div class="col">
+            Your age: 
+            <input class="form-control" type="number" name="txtAge" ng-model="age" adult />
+            <span style="color:red;" ng-show="newsletterForm.txtAge.$error.adult">
+                Should be => 18 and <= 100
+            </span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col">
+                Test name simulated service call
+                <input class="form-control" type="text" name="kevin" ng-model="sn" favorite2 />
+                <span ng-show="newsletterForm.kevin.$pending.favorite2">Checking if this name is available...</span>
+                <span style="color:red;" ng-show="newsletterForm.kevin.$error.favorite2">
+                    No such menu number exists
+                </span>
+            </div>
+        </div> -->
+
+
+        <!-- <div class="form-group row">
+            <div class="col">
+                Third test
+                <input class="form-control" type="text" name="mcj" ng-model="sn3" favorite3 />
+
+                <span ng-show="newsletterForm.mcj.$pending.favorite3">Checking if this name is available...</span>
+                <span style="color:red;" ng-show="newsletterForm.mcj.$error.favorite3">
+                    No such menu number exists
+                </span>
+            </div>
+        </div> -->
 
 
         <!-- SUBMIT BUTTON -->
@@ -146,6 +224,7 @@
         <div class="row">
             <div class="col-sm-8"></div>
         
+            <!-- Task 3 the button should stay disabled until after the short name check. -->
             <button ng-disabled="newsletterForm.$invalid" ng-click="signUpCtrl.submit()"
                     class="btn btn-success col-sm-1">
                 Submit
@@ -161,5 +240,6 @@
          ng-if="signUpCtrl.successfulSubmit">
         Your information has been saved.
     </div>
+
 
   </div>

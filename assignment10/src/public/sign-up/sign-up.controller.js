@@ -18,8 +18,15 @@
         // Success message control
         $ctrl.successfulSubmit = false;
       
+        //Precheck values and load the form if they are already set
+        $ctrl.uP = MenuService.getUserData();
+      
 
         // Submit method
+        // Step 3 we might move the check from this submit function 
+        // to its own function that is called by ngBlur
+        // https://stackoverflow.com/questions/26628257/angularjs-simple-blur-function
+
         $ctrl.submit = function () {
 
         // Check values from the form
@@ -53,9 +60,16 @@
         // All needs to go into the promise that is returned.
         // If not valid, set error message to true
 
-  }
+      }   // End of submit
 
-    }
+
+      // $ctrl.test = function () {
+      //   console.log("in test");
+      //   $ctrl.isSNValid = false;
+      // }
+
+
+    }   // End of controller
     
     
     })();

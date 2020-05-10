@@ -29,6 +29,7 @@ function UserDataController(userPref, ApiPath) {
     } else {
       $ctrl.phoneHasValue = false;
     }
+
   }
   
   $ctrl.userPref = userPref;
